@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DL.P03 Implementación y Entrega · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="delivery.html">Delivery</a> › DL.P03</div>
+<h1><span class="pcode">DL.P03</span>Implementación y Entrega de Proyectos</h1>
+<p class="lead">Del kickoff al go-live aceptado, en UN solo proceso: si el proyecto incluye hardware del fabricante, la entrega física con cadena de custodia es la <b>Fase A</b>; la implementación con runbook y cambios controlados es la <b>Fase B</b>. Lo ejecuta el <a href="delivery.html#fabricantes">equipo del fabricante</a> correspondiente, y el cliente vive un solo viaje continuo con su PM.</p>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>DL.P03</code></td></tr>
+<tr><th>Owner</th><td>PM asignado del <a href="delivery.html#fabricantes">equipo de fabricante</a> · Valida: líder técnico del equipo · Compuerta de pago: CFO</td></tr>
+<tr><th>Trigger</th><td>Kickoff con cliente completado (<a href="dl-p02.html">DL.P02</a>)</td></tr>
+<tr><th>Inputs</th><td>Acta de handoff (<a href="pl-dl.html#e01">DL.P02.E01</a>), arquitectura validada en preventa (<a href="dl-p01.html">DL.P01</a>), orden liberada al fabricante si hay hardware (<a href="fi-p01.html">FI.P01</a> + <a href="pl-fi.html#e03">E03</a>), runbook de la línea</td></tr>
+<tr><th>Outputs</th><td>Solución en producción · acta de aceptación/cierre firmada · memoria técnica y as-built · equipo entregado con custodia (si aplica) · cliente traspasado a soporte (<a href="dl-p04.html">DL.P04</a>)</td></tr>
+<tr><th>Capacidad (WIP)</th><td><span class="wip">Máx 4 proyectos simultáneos por PM (máx 1 misión crítica)</span> — ver <a href="capacidad.html">capacidad</a></td></tr>
+<tr><th>Tiempos</th><td>Hardware: fabricante confirma 4–5 semanas, al cliente se prometen <b>5–8</b> (regla del colchón) · implementación según plan por línea</td></tr>
+<tr><th>Métrica de éxito</th><td>Implementaciones a tiempo &gt; 85% · 0 cambios sin aprobación escrita · 100% trazabilidad de equipos · CSAT ≥ 8/10</td></tr>
+</table>
+
+<h2>Diagrama BPMN</h2>
+<div class="diagram" id="bp-dlp03"></div>
+<script type="application/bpmn+json" data-target="bp-dlp03">
+{"lanes":[
+ {"id":"cli","label":"Cliente","color":"yellow","interaction":true},
+ {"id":"pm","label":"PM + Ingeniero (equipo de fabricante)","color":"teal"},
+ {"id":"cfo","label":"CFO","color":"purple"},
+ {"id":"fab","label":"Fabricante","color":"gray"}
+],"nodes":[
+ {"id":"s","lane":"pm","col":0,"type":"start","label":["Kickoff con cliente","completado (DL.P02)"]},
+ {"id":"g0","lane":"pm","col":1,"type":"gateway","label":["¿Incluye","hardware?"]},
+ {"id":"t1","lane":"fab","col":2,"type":"task","label":["Confirma entrega","4-5 semanas (al cliente","se prometen 5-8)"]},
+ {"id":"g1","lane":"cfo","col":3,"type":"gateway","label":["¿Pago confirmado?","(entrega vs pago)"]},
+ {"id":"t2","lane":"pm","col":4,"type":"task","label":["Fase A: recolección y","entrega con custodia:","serie, custodio, firma"]},
+ {"id":"m1","lane":"cli","col":4,"type":"task","label":["Cliente elige modalidad","y recibe su equipo","con firma"]},
+ {"id":"t3","lane":"pm","col":5,"type":"task","label":["Fase B: acta de inicio +","plan con prerrequisitos"]},
+ {"id":"t4","lane":"pm","col":6,"type":"task","label":["Deployment con runbook","+ reporte semanal C07","+ cambios por escrito"]},
+ {"id":"m2","lane":"cli","col":6,"type":"task","label":["Cliente recibe el mismo","reporte cada semana"]},
+ {"id":"t5","lane":"pm","col":7,"type":"task","label":["Pruebas de aceptación +","acta de cierre triple firma","+ memoria técnica"]},
+ {"id":"m3","lane":"cli","col":7,"type":"task","label":["Cliente valida contra","SUS criterios y firma"]},
+ {"id":"e1","lane":"pm","col":8,"type":"end","label":["Go-live → alta en","soporte DL.P04 + H08"]}
+],"flows":[
+ {"f":"s","t":"g0"},
+ {"f":"g0","t":"t1","label":"Sí"},
+ {"f":"t1","t":"g1"},
+ {"f":"g1","t":"t1","label":"No: se avisa entrega vs pago","loop":true},
+ {"f":"g1","t":"t2","label":"Sí"},
+ {"f":"t2","t":"m1","dashed":true,"label":"entrega con firma"},
+ {"f":"t2","t":"t3"},
+ {"f":"g0","t":"t3","label":"No (software/cloud)"},
+ {"f":"t3","t":"t4"},
+ {"f":"t4","t":"m2","dashed":true,"label":"C07 semanal"},
+ {"f":"t4","t":"t5"},
+ {"f":"t5","t":"m3","dashed":true,"label":"pruebas juntos"},
+ {"f":"t5","t":"e1"}
+],"caption":"DL.P03 — un solo proceso con dos fases: la entrega física (solo si hay hardware) y la implementación. El cliente nunca percibe dos procesos: percibe un solo viaje con su PM."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<p><b>Fase A — Entrega de equipo</b> (solo si el proyecto incluye hardware del fabricante; si es software/cloud, salta al paso 5):</p>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>1</td><td>Fabricante + AM</td><td>El fabricante confirma fecha de entrega (~4–5 semanas). El Account Manager comunica al cliente la ventana <b>conservadora de 5–8 semanas</b> — solo se promete lo que se controla — y monitorea la fecha</td><td>Deal en HubSpot</td><td>Cliente con expectativa correcta</td><td>~2 días post-orden</td></tr>
+<tr><td>2</td><td>AM → CFO</td><td>Antes de coordinar la entrega, el CFO valida el pago. Sin pago confirmado el equipo no se entrega; el AM lo comunica al cliente con tacto: "tu equipo está listo, se libera contra la factura [folio]"</td><td>Compuerta de <a href="fi-p01.html">FI.P01</a></td><td>Pago confirmado</td><td>Antes de la llegada</td></tr>
+<tr><td>3</td><td>AM + PM</td><td>Al llegar el equipo: aviso a cliente y equipo, presentación del PM por nombre, envío de los formatos del fabricante (solicitud de acceso + responsabilidad de proveedores) y el cliente define la modalidad: resguardo / entrega física / paquetería</td><td>Formatos + registro en el deal</td><td>Modalidad documentada, formatos procesados</td><td>Día de llegada</td></tr>
+<tr><td>4</td><td>Ingeniero del equipo</td><td>Recoger el equipo y cerrar la cadena de custodia: serie y licencias vs propuesta, responsable por tramo, transporte, confirmación de entrega firmada por el cliente, alta en base de activos. El líder técnico del equipo da el Vo.Bo. del control criptográfico</td><td><a href="pl-dl.html#e08">DL.P03.E03</a></td><td>Trazabilidad 100% sin huecos</td><td>Fecha acordada</td></tr>
+</table>
+<p><b>Fase B — Implementación</b> (todos los proyectos):</p>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>5</td><td>PM</td><td>Verificar su carga (<span class="wip">máx 4 proyectos, 1 crítico</span>), firmar <b>acta de inicio</b> con el cliente y convertir el plan del kickoff en plan con hitos, responsables de ambas partes y checklist de prerrequisitos (accesos, VPN, aprobaciones). El reloj no corre hasta que los prerrequisitos estén listos — y se documenta cuándo llegaron</td><td>Plan + acta de inicio</td><td>Plan aceptado, prerrequisitos claros</td><td>Semana 1</td></tr>
+<tr><td>6</td><td>Ingeniero</td><td>Ejecutar el deployment con el runbook de la línea (nacido del sandbox <a href="pl-cm.html#e03">CM.P01.E03</a>): pasos, validaciones, rollback. El líder técnico del equipo valida configuración, integración segura y cumplimiento de estándares — <b>segregación de funciones:</b> el implementador no valida su propio trabajo</td><td>Runbook + HubSpot</td><td>Hitos cumplidos con validación técnica</td><td>Según plan</td></tr>
+<tr><td>7</td><td>PM</td><td>Enviar CADA semana el reporte estándar (<a href="pl-cx.html#c07">C07</a>): mismo día, mismo formato para todos los clientes. Todo cambio de alcance por escrito con impacto evaluado y aprobación del cliente ANTES de ejecutar (<a href="pl-dl.html#e05">DL.P03.E02</a>); si aumenta el contrato, avisar a Comercial</td><td><a href="pl-cx.html#c07">C07</a> + <a href="pl-dl.html#e05">E02</a></td><td>0 sorpresas de alcance ni de estado</td><td>Semanal / al ocurrir</td></tr>
+<tr><td>8</td><td>PM + cliente</td><td>Ejecutar pruebas de aceptación contra los criterios definidos desde preventa (<a href="pl-cm.html#e09">DL.P01.E01</a>). Hermes incluye certificación Banxico</td><td>Protocolo de pruebas</td><td>Criterios del CLIENTE cumplidos</td><td>Fase final</td></tr>
+<tr><td>9</td><td>PM</td><td>Cerrar con el paquete completo: <b>acta de cierre de triple firma</b> (Cliente + líder técnico + PM), memoria técnica, checklist técnico firmado, mail resumen y as-built. Sin acta firmada no hay cierre, ni factura de hito (H08 a <a href="fi-p01.html">Finanzas</a>), ni inicio de soporte</td><td><a href="pl-dl.html#e04">DL.P03.E01</a></td><td>Paquete de cierre completo</td><td>Al go-live</td></tr>
+<tr><td>10</td><td>PM + Calidad</td><td>Traspaso cálido a soporte en ≤ 5 días: presentar por nombre al equipo de soporte y al CSM (el cliente no "cae a un buzón"), health score inicial, encuesta CSAT y —si el resultado lo amerita— celebrar el go-live con el cliente y candidatearlo a caso de éxito (H04)</td><td><a href="dl-p04.html">DL.P04</a> paso 0</td><td>Cliente en soporte sin repetir nada</td><td>≤ 5 días post go-live</td></tr>
+</table>
+
+<h2>Entregables</h2>
+<table>
+<tr><th>Código</th><th>Entregable</th><th>Plantilla</th></tr>
+<tr><td><code>DL.P03.E01</code></td><td>Acta de Aceptación / Cierre (triple firma)</td><td><a class="tpl-link" href="pl-dl.html#e04">abrir</a></td></tr>
+<tr><td><code>DL.P03.E02</code></td><td>Solicitud de Cambio (Change Request)</td><td><a class="tpl-link" href="pl-dl.html#e05">abrir</a></td></tr>
+<tr><td><code>DL.P03.E03</code></td><td>Registro de Custodia y Trazabilidad de Equipo</td><td><a class="tpl-link" href="pl-dl.html#e08">abrir</a></td></tr>
+</table>
+
+<h2>Handoffs</h2>
+<table>
+<tr><th>#</th><th>Entrega</th><th>Recibe</th><th>Qué</th><th>Cuándo</th><th>Criterio de calidad</th></tr>
+<tr><td>H06</td><td><a href="dl-p02.html">DL.P02</a> (kickoff)</td><td>Implementación</td><td>Proyecto con plan preliminar y contactos</td><td>Post kickoff</td><td>Acta de handoff completa</td></tr>
+<tr><td>H03h</td><td><a href="fi-p01.html">Finanzas</a></td><td>DL.P03 Fase A</td><td>Orden liberada con doble validación</td><td>Si hay hardware</td><td><a href="pl-fi.html#e03">FI.P01.E03</a> completo</td></tr>
+<tr><td>H08</td><td>DL.P03</td><td><a href="fi-p01.html">Finanzas</a></td><td>Acta de cierre firmada (hito facturable)</td><td>Al go-live</td><td>Triple firma + paquete de cierre</td></tr>
+<tr><td>H04</td><td>DL.P03</td><td><a href="dl-p04.html">Soporte</a> / Comercial</td><td>Cliente con health inicial + activo en base + candidato a caso de éxito</td><td>≤ 5 días post go-live</td><td>Traspaso presentado por nombre; alta completa</td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Implementaciones a tiempo (vs plan)</td><td>&gt; 85%</td><td>Plan vs real</td></tr>
+<tr><td>Entrega de hardware dentro de la promesa (5–8 sem)</td><td>100%</td><td>Fechas del deal</td></tr>
+<tr><td>Equipos con trazabilidad completa · entregas sin pago</td><td>100% · 0</td><td><a href="pl-dl.html#e08">DL.P03.E03</a></td></tr>
+<tr><td>Cambios ejecutados sin aprobación escrita</td><td>0</td><td><a href="pl-dl.html#e05">DL.P03.E02</a></td></tr>
+<tr><td>Proyectos cerrados sin acta de triple firma</td><td>0</td><td><a href="pl-dl.html#e04">DL.P03.E01</a></td></tr>
+<tr><td>CSAT post-implementación</td><td>≥ 8/10</td><td>Encuesta</td></tr>
+</table>
+
+<div class="touch"><b class="tag">Touchpoints con el cliente (experiencia homogénea)</b>
+Un solo PM con nombre y rostro de principio a fin, una fecha de hardware <b>que sí se cumple</b> (porque lleva colchón), el MISMO reporte cada semana (<a href="pl-cx.html#c07">C07</a>), cero sorpresas de alcance, pruebas contra criterios que el cliente definió, y un cierre que se celebra — la seriedad en la logística y la calidez en el trato SON el producto: confianza digital que empieza en el mundo físico.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso DL.P03</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

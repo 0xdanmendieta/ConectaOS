@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plantillas Finanzas · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="plantillas.html">Plantillas</a> › Finanzas</div>
+<h1>Plantillas de Finanzas</h1>
+
+<h2 id="e01"><code>FI.P01.E01</code> — Dashboard Financiero Semanal (viernes)</h2>
+<table class="plantilla">
+<tr><td class="label">Semana / preparado por</td><td></td></tr>
+<tr><td class="label">Cash disponible / runway (meses)</td><td>[alerta si &lt; 24 meses]</td></tr>
+<tr><td class="label">AR aging</td><td>[corriente / +15 / +30 / +45 — con cuentas nombradas en +30]</td></tr>
+<tr><td class="label">Revenue del mes vs meta (por línea)</td><td>[Thales / Tesseract / Hermes / GCP]</td></tr>
+<tr><td class="label">Pipeline ponderado (de <a href="pl-cm.html#e08">CM.P03.E03</a>)</td><td>[coverage vs 3x]</td></tr>
+<tr><td class="label">Facturas emitidas / cobradas en la semana</td><td></td></tr>
+<tr><td class="label">Concentración de cliente top 3</td><td>[% — alerta si alguno &gt; 25%]</td></tr>
+<tr><td class="label">Trimestral (solo 1a semana del trimestre): CAC · LTV · NRR · Burn Multiple</td><td></td></tr>
+<tr><td class="label">Decisiones requeridas</td><td></td></tr>
+</table>
+
+<h2 id="e02"><code>FI.P01.E02</code> — Esquema de Comisiones (acuerdo por vendedor)</h2>
+<table class="plantilla">
+<tr><td class="label">Vendedor / rol / vigencia</td><td></td></tr>
+<tr><td class="label">Cuota trimestral (MXN)</td><td></td></tr>
+<tr><td class="label">Base de cálculo</td><td>% sobre MARGEN de Conecta (no venta bruta)</td></tr>
+<tr><td class="label">% venta nueva</td><td></td></tr>
+<tr><td class="label">% renovación</td><td>[menor que venta nueva]</td></tr>
+<tr><td class="label">% upsell en renovación</td><td>[igual a venta nueva — incentiva CM.P04.A03]</td></tr>
+<tr><td class="label">Acelerador</td><td>[ej. +25% del rate sobre el excedente al superar cuota]</td></tr>
+<tr><td class="label">Momento de pago</td><td>Al COBRO de la factura (no a la firma)</td></tr>
+<tr><td class="label">Condiciones de elegibilidad</td><td>Deal correctamente registrado en HubSpot (monto, stage, notas). Deal sin registro no comisiona.</td></tr>
+<tr><td class="label">Firmas (vendedor / CFO / Head of Sales)</td><td></td></tr>
+</table>
+
+<h2 id="e03"><code>FI.P01.E03</code> — Checklist de Liberación de Orden al Fabricante</h2>
+<table class="plantilla">
+<tr><td class="label">Deal / Cliente / Fabricante</td><td></td></tr>
+<tr><td class="label">1. OC o carta de aceptación del cliente</td><td>☐ Firmada, adjunta en el deal · fecha:</td></tr>
+<tr><td class="label">2. Validación técnica documentada</td><td>☐ Modelo, versión y licencias coinciden EXACTAMENTE con la propuesta · valida: líder técnico del equipo de fabricante</td></tr>
+<tr><td class="label">3. Validación financiera documentada</td><td>☐ Condiciones de pago ☐ Margen aprobado ☐ Tipo de cambio validado · valida: CFO</td></tr>
+<tr><td class="label">4. Triple Vo.Bo. de la propuesta archivado</td><td>☐ Técnico ☐ Financiero ☐ Negocio (correos adjuntos)</td></tr>
+<tr><td class="label">Orden enviada al fabricante</td><td>Fecha: ____ · con copia a CFO y Dirección de negocio</td></tr>
+<tr><td class="label">Contrato (Legal, máx 48 h en paralelo)</td><td>☐ Enviado · ☐ Firmado · fecha:</td></tr>
+<tr><td class="label">Factura emitida (30 días)</td><td>Folio: ____ · fecha:</td></tr>
+<tr><td class="label">Firmas de liberación</td><td>CFO: ________ · Autoridad técnica: ________</td></tr>
+</table>
+<div class="callout rule"><b class="tag">Regla</b>Sin los puntos 1–3 completos y documentados, <b>no se libera ninguna orden al fabricante</b> — Conecta pone el capital en riesgo (<a href="fi-p01.html">FI.P01</a>).</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Plantillas FI</footer>
+</main></div>
+<script src="nav.js"></script>
+</body></html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CM.P05 Metodología de Ventas Conecta · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="comercial.html">Comercial</a> › CM.P05</div>
+<h1><span class="pcode">CM.P05</span>Metodología de Ventas Conecta</h1>
+<p class="lead">Objetivo estratégico #1 de la empresa: <b>crear, probar y mejorar la metodología de ventas Conecta</b>. No un playbook genérico — el manual específico de cómo se vende tecnología financiera en México, alimentado por cada deal ganado y perdido.</p>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>CM.P05</code></td></tr>
+<tr><th>Owner</th><td><a href="posiciones.html#hos">Head of Sales</a> — la responsabilidad de ventas es de Comercial</td></tr>
+<tr><th>Trigger</th><td>Deal perdido &gt; $250K o renovación perdida (post-mortem) · lighthouse cerrado (<a href="cm-p01.html">CM.P01</a> F5) · revisión mensual programada</td></tr>
+<tr><th>Inputs</th><td>Post-mortems, notas de HubSpot, feedback de campo, resultados de campañas, informes de preventa</td></tr>
+<tr><th>Outputs</th><td>Playbook versionado por línea: perfil de comprador, discovery, objeciones, battlecards, pricing guidelines, guiones de demo</td></tr>
+<tr><th>Frecuencia</th><td>Post-mortems por evento · consolidación mensual · revisión trimestral completa</td></tr>
+<tr><th>Herramientas</th><td>Repositorio del playbook (versionado) + HubSpot (fuente de evidencia)</td></tr>
+<tr><th>Métrica de éxito</th><td>Win rate creciente · ciclo de venta decreciente · 100% de pérdidas grandes con post-mortem</td></tr>
+</table>
+
+<h2>Contenido del playbook (por línea)</h2>
+<table>
+<tr><th>Capítulo</th><th>Contenido</th><th>Fuente principal</th></tr>
+<tr><td><b>1. Perfil de comprador</b></td><td>Quién compra (CISO, CTO, CFO, Dir. Operaciones), qué le importa a cada uno, cómo decide una institución financiera mexicana (comités, áreas de riesgo, compliance)</td><td>Discovery calls + Voice of Market</td></tr>
+<tr><td><b>2. Discovery</b></td><td>Preguntas por línea, triggers de compra (regulatorio, renovación de competidor, incidente), señales de deal muerto</td><td>Notas HubSpot</td></tr>
+<tr><td><b>3. Objections handling</b></td><td>Las objeciones reales con respuestas probadas ("ya tenemos proveedor", "STP es el estándar", "el precio", "ustedes son chicos")</td><td>Post-mortems + certificaciones <a href="cm-p01.html">CM.P01</a></td></tr>
+<tr><td><b>4. Competitive battlecards</b></td><td>Por competidor (STP para Hermes, partners Thales rivales, HSM on-premise vs Tesseract): fortalezas, debilidades, trampas a evitar, preguntas que los exponen</td><td><a class="tpl-link" href="pl-dl.html#e03">CM.P05.E01</a></td></tr>
+<tr><td><b>5. Pricing guidelines</b></td><td>Rangos por línea, descuentos permitidos por nivel de aprobación (matriz <a href="fi-p01.html">FI.P01</a>), estructura transaccional Hermes (5 tiers $1.60–$4.00/tx)</td><td><a href="fi-p01.html">FI.P01</a> + fabricantes</td></tr>
+<tr><td><b>6. Guiones de demo</b></td><td>Flujo de demo estándar por línea con momentos "wow" y criterios de éxito sugeridos para PoC</td><td>Preventa (<a href="dl-p01.html">DL.P01</a>)</td></tr>
+</table>
+
+<h2>Diagrama BPMN — ciclo de mejora</h2>
+<div class="diagram" id="bp-dlp02"></div>
+<script type="application/bpmn+json" data-target="bp-dlp02">
+{"lanes":[
+ {"id":"campo","label":"Equipo comercial (campo)","color":"orange"},
+ {"id":"gob","label":"Head of Sales + Delivery","color":"teal"},
+ {"id":"pb","label":"Playbook (repositorio)","color":"gray"}
+],"nodes":[
+ {"id":"s","lane":"campo","col":0,"type":"start","label":["Deal won/lost >$250K,","lighthouse o ciclo mensual"]},
+ {"id":"t1","lane":"campo","col":1,"type":"task","label":["Post-mortem 30-45 min,","sin culpables, semana","siguiente al cierre"]},
+ {"id":"d1","lane":"pb","col":1,"type":"doc","label":["CM.P05.E02"],"href":"pl-dl.html#e02"},
+ {"id":"t2","lane":"gob","col":2,"type":"task","label":["Consolidación mensual:","decidir cambios al","playbook"]},
+ {"id":"t3","lane":"pb","col":3,"type":"task","label":["Publicar vN+1","con changelog"]},
+ {"id":"t4","lane":"gob","col":4,"type":"task","label":["Micro-entrenamiento","20 min + actualizar","assessment CM.P01.E02"]},
+ {"id":"e1","lane":"campo","col":5,"type":"end","label":["Equipo vende con la","versión vigente"]}
+],"flows":[
+ {"f":"s","t":"t1"},
+ {"f":"t1","t":"d1","dashed":true,"label":"genera"},
+ {"f":"t1","t":"t2"},
+ {"f":"t2","t":"t3"},
+ {"f":"t3","t":"t4"},
+ {"f":"t4","t":"e1"},
+ {"f":"e1","t":"s","label":"cada deal alimenta el ciclo","loop":true}
+],"caption":"CM.P05 — cada deal (ganado o perdido) alimenta el playbook; el playbook mejora cada venta siguiente."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>1</td><td><a href="posiciones.html#hos">HoS</a> + <a href="posiciones.html#hod">HoD</a></td><td>Construir el playbook v1 por línea con lo que ya existe: materiales de fabricantes (<a href="cm-p01.html">CM.P01</a> F1), notas de renovaciones, competitive analysis de Hermes. v1 imperfecto en 4 semanas &gt; v-perfecto en 6 meses</td><td>Repositorio versionado</td><td>v1 publicado con los 6 capítulos</td><td>4 semanas</td></tr>
+<tr><td>2</td><td>Vendedor del deal + HoS</td><td>Ejecutar post-mortem obligatorio (lost &gt; $250K, toda renovación perdida, lighthouse): qué pasó, qué señales ignoramos, qué haremos distinto, qué cambia en el playbook</td><td><a href="pl-dl.html#e02">CM.P05.E02</a></td><td>Post-mortem con ≥ 1 cambio propuesto</td><td>Semana siguiente al cierre</td></tr>
+<tr><td>3</td><td>HoS + HoD</td><td>Consolidación mensual (30 min al cierre del <a href="cm-p03.html">pipeline review</a> de fin de mes): revisar post-mortems y feedback, decidir cambios</td><td>Acta de consolidación</td><td>Cambios aprobados</td><td>Mensual</td></tr>
+<tr><td>4</td><td>HoD</td><td>Publicar la versión nueva con changelog: qué cambió, por qué, con qué evidencia</td><td>Repositorio del playbook</td><td>vN+1 publicada</td><td>≤ 3 días post-consolidación</td></tr>
+<tr><td>5</td><td>HoS</td><td>Micro-entrenamiento de 20 min sobre los cambios mayores + actualizar el assessment de certificación (<a href="pl-cm.html#e02">CM.P01.E02</a>)</td><td>Sesión registrada</td><td>100% del equipo entrenado en la versión vigente</td><td>Semana de publicación</td></tr>
+</table>
+
+<h2>Entregables</h2>
+<table>
+<tr><th>Código</th><th>Entregable</th><th>Plantilla</th></tr>
+<tr><td><code><a href="pl-dl.html#e03">CM.P05.E01</a></code></td><td>Battlecard competitivo (por competidor/línea)</td><td><a class="tpl-link" href="pl-dl.html#e03">abrir</a></td></tr>
+<tr><td><code><a href="pl-dl.html#e02">CM.P05.E02</a></code></td><td>Post-mortem de deal (ganado o perdido)</td><td><a class="tpl-link" href="pl-dl.html#e02">abrir</a></td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Win rate (tendencia trimestral)</td><td>Creciente hacia &gt; 25%</td><td>HubSpot</td></tr>
+<tr><td>Pérdidas &gt; $250K con post-mortem</td><td>100%</td><td>Registro <a href="pl-dl.html#e02">CM.P05.E02</a></td></tr>
+<tr><td>Versiones de playbook publicadas</td><td>≥ 1/mes</td><td>Changelog</td></tr>
+<tr><td>Vendedores certificados en versión vigente</td><td>100%</td><td><a href="pl-cm.html#e02">CM.P01.E02</a></td></tr>
+</table>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso CM.P05</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

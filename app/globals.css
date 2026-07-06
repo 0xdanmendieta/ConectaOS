@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #fbfaf8;
+  color: #1b1b20;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Uppercase micro labels */
+.label-caps {
+  font-size: 11px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 600;
+  color: #5e5a6b;
+}
+
+/* Process code / mono */
+.mono {
+  font-family: "Inter Mono", ui-monospace, SFMono-Regular, monospace;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Custom slim scrollbars */
+.scroll-slim::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: #e8d8ff;
+  border-radius: 999px;
+}
+.scroll-slim::-webkit-scrollbar-thumb:hover {
+  background: #b68bff;
+}
+.scroll-slim::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Focus ring per §22 */
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(182, 139, 255, 0.55);
+}
+
+/* Ambient hero gradient */
+.hero-ambient {
+  background: radial-gradient(
+    120% 120% at 85% 15%,
+    rgba(232, 216, 255, 0.55) 0%,
+    rgba(255, 246, 239, 0.35) 45%,
+    rgba(251, 250, 248, 0) 75%
+  );
+}
+
+@keyframes nexo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+.nexo-float {
+  animation: nexo-float 3s ease-in-out infinite;
+}
+
+/* Hide scrollbar utility for horizontal tab rails on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

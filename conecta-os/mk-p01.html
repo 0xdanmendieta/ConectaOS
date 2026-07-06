@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MK.P01 Contenido y PR · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="marketing.html">Marketing</a> › MK.P01</div>
+<h1><span class="pcode">MK.P01</span>Estrategia de Contenido y PR</h1>
+<p class="lead">Sistema recurrente de Voice of Market: generar data propia (encuestas, entrevistas, diagnósticos), convertirla en piezas bandera y publicarlas con evidencia validada bajo la tesis "El Estándar Mexicano de Confianza Digital".</p>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>MK.P01</code></td></tr>
+<tr><th>Owner</th><td>Head of Marketing (interino: CEO + apoyo externo hasta contratar)</td></tr>
+<tr><th>Trigger</th><td>Calendario editorial mensual · hito de negocio (lanzamiento Hermes, reporte semestral) · data nueva de Voice of Market</td></tr>
+<tr><th>Inputs</th><td>Data propia (encuestas/entrevistas), feedback de campo de Comercial (H01), casos de éxito de Delivery (H04), tesis narrativa</td></tr>
+<tr><th>Outputs</th><td>Piezas publicadas (reporte, framework, customer story, LinkedIn Live, columna), leads inbound (MQL → H02)</td></tr>
+<tr><th>Frecuencia</th><td>Ciclo editorial mensual con revisión semanal de 30 min</td></tr>
+<tr><th>Herramientas</th><td>HubSpot (marketing hub, forms, workflows), LinkedIn, medios (Expansión)</td></tr>
+<tr><th>Métrica de éxito</th><td>Leads generados por contenido · engagement rate · share of voice</td></tr>
+</table>
+
+<h2>Diagrama BPMN</h2>
+<div class="diagram" id="bp-mkp01"></div>
+<script type="application/bpmn+json" data-target="bp-mkp01">
+{"lanes":[
+ {"id":"aud","label":"Mercado / Audiencia","color":"yellow","interaction":true},
+ {"id":"mk","label":"Marketing","color":"blue"},
+ {"id":"com","label":"Comercial","color":"orange"}
+],"nodes":[
+ {"id":"s","lane":"mk","col":0,"type":"start","label":["Ciclo editorial /","hito de negocio"]},
+ {"id":"t1","lane":"mk","col":1,"type":"task","label":["Voice of Market:","encuestas, entrevistas,","diagnósticos"]},
+ {"id":"m0","lane":"aud","col":1,"type":"task","label":["El mercado aporta","data propia"]},
+ {"id":"t2","lane":"mk","col":2,"type":"task","label":["Calendario priorizado:","must-ship primero"]},
+ {"id":"t3","lane":"mk","col":3,"type":"task","label":["Producir: dato +","interpretación + opinión","+ invitación"]},
+ {"id":"g1","lane":"mk","col":4,"type":"gateway","label":["¿Cada claim tiene","evidencia? (E02)"]},
+ {"id":"t4","lane":"mk","col":5,"type":"task","label":["Publicar y distribuir","con CTA medible"]},
+ {"id":"m1","lane":"aud","col":5,"type":"task","label":["Audiencia consume,","descarga, se registra"]},
+ {"id":"t5","lane":"mk","col":6,"type":"task","label":["Calificar MQL y","asignar (H02)"]},
+ {"id":"e1","lane":"com","col":7,"type":"end","label":["Vendedor contacta","en < 24 h → CM.P02"]}
+],"flows":[
+ {"f":"s","t":"t1"},
+ {"f":"m0","t":"t1","dashed":true,"label":"data"},
+ {"f":"t1","t":"t2"},
+ {"f":"t2","t":"t3"},
+ {"f":"t3","t":"g1"},
+ {"f":"g1","t":"t3","label":"No: reescribir o cortar","loop":true},
+ {"f":"g1","t":"t4","label":"Sí"},
+ {"f":"t4","t":"m1","dashed":true,"label":"pieza + CTA"},
+ {"f":"m1","t":"t5","dashed":true,"label":"formulario"},
+ {"f":"t5","t":"e1"}
+],"caption":"MK.P01 — la matriz de evidencia es la compuerta de publicación: ningún claim sale sin fuente."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>1</td><td><a href="posiciones.html#hom">Marketing</a></td><td>Operar el programa trimestral de Voice of Market: encuestas al sector, entrevistas (ritmo Reporte H1: 47), diagnósticos con prospectos. Registrar cada dato: pregunta, muestra, fecha, hallazgo</td><td>Repositorio de data propia</td><td>Data estructurada y citable</td><td>Trimestral</td></tr>
+<tr><td>2</td><td>Marketing</td><td>Armar el calendario del mes clasificando cada pieza: Must ship / Ship if assets exist / Hold. Si excede capacidad, recortar desde Hold — nunca sacrificar must-ship</td><td><a href="pl-mk.html#e03">MK.P01.E01</a></td><td>Calendario dentro de capacidad real (<a href="capacidad.html">WIP</a>)</td><td>Día 1 del mes</td></tr>
+<tr><td>3</td><td>Marketing</td><td>Producir cada pieza con la fórmula fija: dato propio + interpretación + opinión Conecta + invitación (CTA medible). Narrativa: Conecta = infraestructura institucional, Tesseract = acceso operable</td><td>Piezas bandera</td><td>Borrador con CTA definido</td><td>Según calendario</td></tr>
+<tr><td>4</td><td>Marketing</td><td>Pasar la pieza por la matriz de evidencia: cada claim mapeado a data propia, fuente citable o caso autorizado. Claim sin evidencia = se reescribe o se corta</td><td><a href="pl-mk.html#e02">MK.P01.E02</a></td><td>100% de claims con fuente</td><td>Antes de publicar</td></tr>
+<tr><td>5</td><td>Marketing</td><td>Publicar con formulario HubSpot en el CTA; distribuir en LinkedIn (orgánico CEO + pagado), email a base propia y PR</td><td>HubSpot Marketing</td><td>Pieza en vivo con tracking</td><td>Fecha del calendario</td></tr>
+<tr><td>6</td><td>Marketing</td><td>Calificar cada registro contra el ICP y asignar los MQL al vendedor de la línea vía workflow (handoff <a href="handoffs.html">H02</a>). Sin leads basura</td><td>HubSpot Workflows</td><td>MQL asignado con contexto de la pieza</td><td>Automático</td></tr>
+<tr><td>7</td><td>Vendedor</td><td>Contactar al MQL en &lt; 24 h con referencia a la pieza que descargó (<a href="pl-cx.html#c01">C01</a> adaptada)</td><td><a href="cm-p02.html">CM.P02</a></td><td>Primer toque registrado</td><td>&lt; 24 h</td></tr>
+<tr><td>8</td><td>Marketing</td><td>Medir a 7 y 30 días: engagement, leads, menciones. Documentar lo que funcionó y lo que no; realimentar el calendario</td><td>Analytics + <a href="metricas.html">dashboard</a></td><td>Reporte por pieza</td><td>D+7 y D+30</td></tr>
+</table>
+
+<div class="touch"><b class="tag">Touchpoints con la audiencia (experiencia homogénea)</b>
+Cada contacto con el mercado (encuesta, entrevista, pieza, respuesta a comentario) usa el mismo tono del <a href="experiencia.html">Estándar de Experiencia</a>: claro, con datos, sin jerga y con reciprocidad — quien participa en una encuesta recibe primero los resultados. <span class="wip">WIP: máx 8 piezas/mes por persona · 3 campañas activas</span></div>
+
+<h2>Entregables</h2>
+<table>
+<tr><th>Código</th><th>Entregable</th><th>Plantilla</th></tr>
+<tr><td><code><a href="pl-mk.html#e03">MK.P01.E01</a></code></td><td>Calendario editorial mensual priorizado</td><td><a class="tpl-link" href="pl-mk.html#e03">abrir</a></td></tr>
+<tr><td><code><a href="pl-mk.html#e02">MK.P01.E02</a></code></td><td>Matriz de evidencia (claims vs fuentes)</td><td><a class="tpl-link" href="pl-mk.html#e02">abrir</a></td></tr>
+</table>
+
+<h2>Handoffs</h2>
+<table>
+<tr><th>#</th><th>Entrega</th><th>Recibe</th><th>Qué</th><th>Cuándo</th><th>Criterio de calidad</th></tr>
+<tr><td>H02</td><td>Marketing</td><td>Comercial</td><td>MQLs con contexto (pieza de origen, cargo, empresa, trigger)</td><td>Continuo, &lt; 24 h</td><td>Datos completos; sin leads basura (estudiantes, proveedores)</td></tr>
+<tr><td>H01</td><td>Comercial</td><td>Marketing</td><td>Feedback de campo, objeciones, competitive intel</td><td>Quincenal</td><td>Accionable: qué mensaje cambiar, qué contenido falta</td></tr>
+<tr><td>H04</td><td>Delivery</td><td>Marketing</td><td>Casos de éxito con resultados y autorización del cliente</td><td>Post go-live</td><td>Métricas reales + aprobación escrita del cliente</td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Leads generados por contenido / mes</td><td>≥ 15 MQL</td><td>HubSpot</td></tr>
+<tr><td>Engagement rate piezas bandera</td><td>+20% por trimestre</td><td>LinkedIn analytics</td></tr>
+<tr><td>Share of voice vs competencia</td><td>Creciente</td><td>Monitoreo de medios</td></tr>
+<tr><td>Claims publicados con evidencia validada</td><td>100%</td><td><a href="pl-mk.html#e02">MK.P01.E02</a></td></tr>
+</table>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso MK.P01</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

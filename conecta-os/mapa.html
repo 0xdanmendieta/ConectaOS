@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mapa de Procesos · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › Mapa de Procesos</div>
+<h1><span class="pcode">CONECTA OS · MAPA</span>Mapa de Procesos Interactivo</h1>
+<p class="lead">Los 14 procesos ordenados por lo único que importa: <b>el viaje del cliente</b>. Filtra por dominio, pasa el mouse sobre un proceso para verlo brillar, haz clic para abrirlo — o dale ▶ y deja que el mapa te cuente la historia de un deal de principio a fin.</p>
+
+<div class="map-controls">
+  <button class="fbtn play" id="btnTour">▶ Tour: la vida de un deal</button>
+  <button class="fbtn" id="btnRandom">🎲 Proceso aleatorio</button>
+  <span style="width:14px"></span>
+  <button class="fbtn active" data-dom="all">Todos</button>
+  <button class="fbtn" data-dom="cm">Comercial</button>
+  <button class="fbtn" data-dom="mk">Marketing</button>
+  <button class="fbtn" data-dom="dl">Delivery</button>
+  <button class="fbtn" data-dom="op">Operaciones</button>
+  <button class="fbtn" data-dom="fi">Finanzas</button>
+</div>
+
+<div class="tourbox" id="tourbox"><span class="tstep" id="tstep"></span><b id="ttitle"></b><p id="ttext"></p></div>
+
+<div class="jwrap">
+<div class="journey">
+
+  <div class="stage"><h4>1 · Descubre</h4>
+    <div class="cli"><b>El cliente</b>Lee el Reporte H1, ve el LinkedIn Live, recibe un email con SU trigger regulatorio.</div>
+    <a class="pnode d-mk" href="mk-p01.html" id="n-mkp01" data-dom="mk"><b>MK.P01</b><span>Contenido y PR</span><small>Voice of Market · piezas bandera</small></a>
+    <a class="pnode d-mk" href="mk-p02.html" id="n-mkp02" data-dom="mk"><b>MK.P02</b><span>Campañas por Línea</span><small>Hermes SPEI · Tesseract · Thales</small></a>
+    <a class="pnode d-cm" href="cm-p01.html" id="n-cmp01" data-dom="cm"><b>CM.P01</b><span>Onboarding de Fabricante</span><small>GO/NO-GO · certificación · lighthouse</small></a>
+  </div>
+
+  <div class="stage"><h4>2 · Evalúa</h4>
+    <div class="cli"><b>El cliente</b>Toma la reunión, involucra a su equipo técnico, define criterios de éxito y ve la demo.</div>
+    <a class="pnode d-cm" href="cm-p02.html" id="n-cmp02" data-dom="cm"><b>CM.P02</b><span>Prospección Outbound</span><small>secuencia D1-D21 · BANT-F</small></a>
+    <a class="pnode d-dl" href="dl-p01.html" id="n-cmp05" data-dom="dl"><b>DL.P01</b><span>Preventa Técnica</span><small>equipo del fabricante · demo ≤10 días</small></a>
+  </div>
+
+  <div class="stage"><h4>3 · Decide y compra</h4>
+    <div class="cli"><b>El cliente</b>Recibe la propuesta en reunión, la valida con su comité y firma.</div>
+    <a class="pnode d-cm" href="cm-p03.html" id="n-cmp03" data-dom="cm"><b>CM.P03</b><span>Gestión de Pipeline</span><small>stages con evidencia · review semanal</small></a>
+    <a class="pnode d-fi" href="fi-p01.html" id="n-fip01" data-dom="fi"><b>FI.P01</b><span>Finanzas Comerciales</span><small>cotización · factura · comisión</small></a>
+  </div>
+
+  <div class="stage"><h4>4 · Onboarding</h4>
+    <div class="cli"><b>El cliente</b>Recibe bienvenida en 24 h, kickoff ≤10 días y NO repite nada de lo que ya dijo.</div>
+    <a class="pnode d-dl" href="dl-p02.html" id="n-dlp01" data-dom="dl"><b>DL.P02</b><span>Handoff Ventas → Delivery</span><small>acta · kickoff interno y con cliente</small></a>
+    
+    <a class="pnode d-dl" href="dl-p03.html" id="n-dlp03" data-dom="dl"><b>DL.P03</b><span>Implementación y Entrega</span><small>custodia si hay hardware · runbook · máx 4/PM</small></a>
+  </div>
+
+  <div class="stage"><h4>5 · Opera</h4>
+    <div class="cli"><b>El cliente</b>Usa el producto, abre tickets con folio y avances proactivos, recibe su QBR.</div>
+    <a class="pnode d-dl" href="dl-p04.html" id="n-dlp04" data-dom="dl"><b>DL.P04</b><span>Soporte Post-Venta</span><small>5x8/Ext/24x7 · L1-L3 · health score</small></a>
+    <a class="pnode d-dl" href="dl-p05.html" id="n-dlp05" data-dom="dl"><b>DL.P05</b><span>Certificación de Ingenieros</span><small>sandbox · vigencia 6 meses</small></a>
+    <a class="pnode d-cm" href="cm-p05.html" id="n-dlp02" data-dom="cm"><b>CM.P05</b><span>Metodología de Ventas</span><small>playbook · post-mortems</small></a>
+  </div>
+
+  <div class="stage"><h4>6 · Renueva y expande</h4>
+    <div class="cli"><b>El cliente</b>Recibe contacto a T-90 con revisión de valor — la factura nunca es la primera noticia.</div>
+    <a class="pnode d-cm" href="cm-p04.html" id="n-cmp04" data-dom="cm"><b>CM.P04</b><span>Renovaciones</span><small>T-90 · upsell · retención 48 h</small></a>
+  </div>
+
+</div>
+</div>
+
+<h3>Soporte transversal (habilitan todo el viaje)</h3>
+<div class="transversal">
+  <a class="pnode d-op" href="op-p01.html" data-dom="op"><b>OP.P01</b><span>RRHH Comercial (Administración)</span><small>contratación · 30-60-90 · desempeño</small></a>
+  <a class="pnode d-op" href="capacidad.html" data-dom="op"><b>GO · WIP</b><span>Capacidad Operativa</span><small>límites por rol · regla del 80%</small></a>
+  <a class="pnode d-fi" href="metricas.html" data-dom="fi"><b>GO · KPI</b><span>Dashboard de Negocio</span><small>una fuente de verdad: HubSpot</small></a>
+  <a class="pnode d-op" href="experiencia.html" data-dom="op"><b>CX</b><span>Estándar de Experiencia</span><small>C01–C10 · SLAs · tono de voz</small></a>
+</div>
+
+<div class="callout"><b class="tag">Cómo leerlo</b>La franja amarilla de cada etapa es lo que <b>vive el cliente</b> (la línea de interacción del <a href="blueprint.html">Service Blueprint</a>). Las tarjetas de abajo son los procesos que lo hacen posible, coloreados por dominio. El detalle fino de cada interacción entre áreas está en la <a href="handoffs.html">Matriz de Handoffs</a>.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026</footer>
+</main></div>
+<script src="nav.js"></script>
+<script>
+(function(){
+  // ---- filtros por dominio ----
+  var fbtns=document.querySelectorAll('.fbtn[data-dom]');
+  fbtns.forEach(function(b){
+    b.addEventListener('click',function(){
+      fbtns.forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      var d=b.dataset.dom;
+      document.querySelectorAll('.pnode').forEach(function(n){
+        n.classList.toggle('dim', d!=='all' && n.dataset.dom!==d);
+        n.classList.remove('lit');
+      });
+    });
+  });
+
+  // ---- tour: la vida de un deal ----
+  var TOUR=[
+    ['n-cmp01','Paso 1 · Nace una línea','CM.P01: el fabricante entrega su checklist 8/8 y el equipo se certifica. Nadie sale a vender sin aprobar el assessment.'],
+    ['n-mkp02','Paso 2 · Se genera demanda','MK.P02: la campaña sale con el driver de urgencia (ej. deadline SPEI de Banxico) y empieza a producir MQLs.'],
+    ['n-cmp02','Paso 3 · Prospección','CM.P02: secuencia D1-D21 con el trigger del prospecto en la primera línea. Discovery, minuta en 24 h y calificación BANT-F ≥ 4/5.'],
+    ['n-cmp05','Paso 4 · Validación técnica','DL.P01: preventa responde en 48 h, acuerda criterios de éxito POR ESCRITO y ejecuta la demo. Su veredicto es vinculante.'],
+    ['n-cmp03','Paso 5 · El deal avanza','CM.P03: stages solo con evidencia, review cada lunes 9:00, cero deals sin actividad 7 días... y se firma. 🎉'],
+    ['n-fip01','Paso 6 · El dinero fluye','FI.P01: cotización aprobada por matriz, factura en ≤3 días del hito, comisión al cobro. Sin registro en HubSpot no comisiona.'],
+    ['n-dlp01','Paso 7 · Handoff perfecto','DL.P02: bienvenida en 24 h, acta completa, kickoff ≤10 días. El cliente NO repite nada de lo que ya contó.'],
+    
+    ['n-dlp03','Paso 8 · Se entrega y se construye','DL.P03: si hay fierros, primero la entrega contra pago con cadena de custodia (5-8 semanas prometidas). Luego el PM (máx 4 proyectos) ejecuta con runbook, reporte semanal idéntico, cambios por escrito y acta de cierre de triple firma.'],
+    ['n-dlp04','Paso 9 · Se opera','DL.P04: tickets con folio y severidad, avances cada 2 h si es S1, health score mensual que avisa a Comercial.'],
+    ['n-cmp04','Paso 10 · Se renueva y crece','CM.P04: a T-90 el cliente recibe la revisión de valor de SU año. Propuesta antes de T-60, firma antes de T-30, upsell incluido. Y el ciclo vuelve a empezar. ♾️']
+  ];
+  var box=document.getElementById('tourbox'),tt=document.getElementById('ttitle'),tx=document.getElementById('ttext'),ts=document.getElementById('tstep');
+  var timer=null,idx=0,btn=document.getElementById('btnTour');
+  function clearLit(){ document.querySelectorAll('.pnode').forEach(function(n){n.classList.remove('lit');n.classList.remove('dim');}); }
+  function showStep(i){
+    clearLit();
+    document.querySelectorAll('.pnode').forEach(function(n){n.classList.add('dim');});
+    var st=TOUR[i], node=document.getElementById(st[0]);
+    node.classList.remove('dim'); node.classList.add('lit');
+    node.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+    ts.textContent='Tour '+(i+1)+' / '+TOUR.length;
+    tt.textContent=st[1]; tx.textContent=st[2];
+    box.classList.add('show');
+  }
+  function stopTour(){ if(timer){clearInterval(timer);timer=null;} clearLit(); box.classList.remove('show'); btn.textContent='▶ Tour: la vida de un deal'; }
+  btn.addEventListener('click',function(){
+    if(timer){ stopTour(); return; }
+    idx=0; showStep(0); btn.textContent='■ Detener tour';
+    timer=setInterval(function(){ idx++; if(idx>=TOUR.length){ stopTour(); return; } showStep(idx); },5200);
+  });
+
+  // ---- proceso aleatorio ----
+  document.getElementById('btnRandom').addEventListener('click',function(){
+    var nodes=Array.prototype.slice.call(document.querySelectorAll('.pnode'));
+    var pick=nodes[Math.floor(Math.random()*nodes.length)];
+    clearLit(); nodes.forEach(function(n){n.classList.add('dim');});
+    pick.classList.remove('dim'); pick.classList.add('lit');
+    pick.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+    box.classList.add('show'); ts.textContent='Aprende uno al azar';
+    tt.textContent=pick.querySelector('b').textContent+' · '+pick.querySelector('span').textContent;
+    tx.textContent='Haz clic en la tarjeta iluminada para abrir el proceso completo: diagrama BPMN, pasos 1-2-3 y touchpoints con el cliente.';
+  });
+})();
+</script>
+</body></html>

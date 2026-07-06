@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DL.P04 Soporte Post-Venta · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="delivery.html">Delivery</a> › DL.P04</div>
+<h1><span class="pcode">DL.P04</span>Soporte Post-Venta</h1>
+<p class="lead">Mantiene a los clientes operando y a las personas tranquilas: triage L1/L2/L3 con caras y nombres, SLAs por severidad y esquema contratado, escalación al fabricante donde Conecta da la cara, llamada mensual del Account Manager y un health score que avisa a Comercial antes de que una cuenta se enfríe.</p>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>DL.P04</code></td></tr>
+<tr><th>Owner</th><td><a href="posiciones.html#hod">Head of Delivery</a> · Ejecutan: Soporte L1/L2 + <a href="delivery.html#fabricantes">equipo de fabricante</a> (L3 con el fabricante)</td></tr>
+<tr><th>Trigger</th><td>Go-live aceptado (<a href="dl-p03.html">DL.P03</a>) para el alta del servicio · ticket del cliente · alerta de monitoreo · ciclo mensual de salud</td></tr>
+<tr><th>Inputs</th><td>Contrato de soporte con esquema y SLAs, as-built, activo registrado con custodia (<a href="pl-dl.html#e08">DL.P03.E03</a>), contactos de escalación del fabricante (<a href="cm-p01.html">CM.P01</a> F1)</td></tr>
+<tr><th>Outputs</th><td>Tickets resueltos dentro de SLA · health score mensual por cuenta (<a href="pl-dl.html#e06">DL.P04.E01</a>) · reporte mensual de actividad al AM · alertas de riesgo/upsell a Comercial (H04)</td></tr>
+<tr><th>Frecuencia</th><td>Continua · health score y llamada del AM mensuales</td></tr>
+<tr><th>Herramientas</th><td>HubSpot Service Hub (tickets, SLAs, encuestas) + base de activos</td></tr>
+<tr><th>Capacidad (WIP)</th><td><span class="wip">Máx 15 tickets abiertos por agente L1 · 8 por ingeniero L2</span> — ver <a href="capacidad.html">modelo de capacidad</a></td></tr>
+<tr><th>Métrica de éxito</th><td>Cumplimiento de SLA &gt; 95% · CSAT por ticket ≥ 4.5/5 · 0 cuentas 🔴 sin plan en 48 h</td></tr>
+</table>
+
+<h2>Esquemas de soporte, niveles y SLAs</h2>
+<table>
+<tr><th>Esquema contratado</th><th>Cobertura</th><th>Aplica a</th></tr>
+<tr><td><b>Soporte Básico 5x8</b></td><td>Lun–Vie 9:00–18:00</td><td>Contratos estándar</td></tr>
+<tr><td><b>Soporte Extendido</b></td><td>Lun–Sáb 7:00–22:00</td><td>Operación crítica en horario amplio</td></tr>
+<tr><td><b>Soporte 24x7</b></td><td>Todos los días, todo el año</td><td>Misión crítica: Hermes/SPEI (obligatorio), HSM productivo</td></tr>
+</table>
+<p>La matriz de severidades corre dentro de la ventana del esquema contratado; en 24x7 el reloj de S1 es continuo.</p>
+<table>
+<tr><th>Nivel</th><th>Quién</th><th>Qué resuelve</th></tr>
+<tr><td><b>L1</b></td><td>Soporte Conecta</td><td>Registro, triage, dudas de uso, problemas conocidos (base de conocimiento)</td></tr>
+<tr><td><b>L2</b></td><td>Ingeniería Conecta (<a href="delivery.html#fabricantes">equipo del fabricante</a>)</td><td>Configuración avanzada, integraciones, diagnóstico profundo</td></tr>
+<tr><td><b>L3</b></td><td>Fabricante (Thales / Tesseract / Hermes / Google)</td><td>Bugs de producto, parches, hardware — según SLA del acuerdo <a href="cm-p01.html">CM.P01</a> F1</td></tr>
+</table>
+<table>
+<tr><th>Severidad</th><th>Definición</th><th>Primera respuesta</th><th>Resolución objetivo</th></tr>
+<tr><td><b>S1 Crítica</b></td><td>Producción caída / transacciones detenidas (ej. SPEI sin operar)</td><td>30 min, según esquema</td><td>4 h (workaround) · 24 h (definitiva)</td></tr>
+<tr><td><b>S2 Alta</b></td><td>Función principal degradada, hay workaround</td><td>2 h hábiles</td><td>2 días hábiles</td></tr>
+<tr><td><b>S3 Media</b></td><td>Problema sin impacto en operación</td><td>8 h hábiles</td><td>5 días hábiles</td></tr>
+<tr><td><b>S4 Baja</b></td><td>Dudas, solicitudes menores</td><td>24 h hábiles</td><td>10 días hábiles</td></tr>
+</table>
+
+<h2>Diagrama BPMN</h2>
+<div class="diagram" id="bp-dlp04"></div>
+<script type="application/bpmn+json" data-target="bp-dlp04">
+{"lanes":[
+ {"id":"cli","label":"Cliente","color":"yellow","interaction":true},
+ {"id":"l1","label":"Soporte L1/L2","color":"teal"},
+ {"id":"fab","label":"Fabricante (L3)","color":"gray"},
+ {"id":"cx","label":"CX + Account Manager","color":"blue"}
+],"nodes":[
+ {"id":"s","lane":"cli","col":0,"type":"start","label":["Cliente reporta","incidente o duda"]},
+ {"id":"t1","lane":"l1","col":1,"type":"task","label":["Registrar ticket SIEMPRE","en Service Hub","(aunque llegue por WhatsApp)"]},
+ {"id":"t2","lane":"l1","col":2,"type":"task","label":["Triage: severidad S1-S4","+ esquema 5x8/Ext/24x7"]},
+ {"id":"g1","lane":"l1","col":3,"type":"gateway","label":["¿L1 resuelve?"]},
+ {"id":"t3","lane":"l1","col":4,"type":"task","label":["Resolver con base","de conocimiento"]},
+ {"id":"t5","lane":"fab","col":4,"type":"task","label":["Escalar L2 → L3 con","SLA del fabricante:","Conecta da la cara"]},
+ {"id":"t6","lane":"l1","col":5,"type":"task","label":["Comunicar avance:","cada 2 h si S1 (C08)"]},
+ {"id":"m1","lane":"cli","col":5,"type":"task","label":["Cliente informado sin","tener que perseguir","a nadie"]},
+ {"id":"t7","lane":"l1","col":6,"type":"task","label":["Cerrar con causa raíz","+ encuesta CSAT"]},
+ {"id":"t8","lane":"cx","col":7,"type":"task","label":["Reporte mensual al AM","+ llamada mensual","al cliente"]},
+ {"id":"e1","lane":"cx","col":8,"type":"end","label":["Health score mensual","→ H04 a Comercial"]}
+],"flows":[
+ {"f":"s","t":"t1","dashed":true,"label":"cualquier canal"},
+ {"f":"t1","t":"t2"},
+ {"f":"t2","t":"g1"},
+ {"f":"g1","t":"t3","label":"Sí (>60%)"},
+ {"f":"g1","t":"t5","label":"No"},
+ {"f":"t3","t":"t7"},
+ {"f":"t5","t":"t6"},
+ {"f":"t6","t":"m1","dashed":true,"label":"C08"},
+ {"f":"t6","t":"t7"},
+ {"f":"t7","t":"t8"},
+ {"f":"t8","t":"e1"}
+],"caption":"DL.P04 — todo entra a Service Hub, el cliente recibe comunicación proactiva hasta el cierre con causa raíz, y cada mes escucha la voz de su Account Manager."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>0</td><td>Soporte + CFO</td><td>Alta del servicio (onboarding formal): verificar pago 100% (CFO), contrato vigente y activo registrado con su custodia (<a href="pl-dl.html#e08">DL.P03.E03</a>); reunión de arranque donde Soporte presenta procesos de atención, tiempos y contactos — el cliente conoce a las personas que lo van a cuidar</td><td>Base de activos + <a href="pl-cx.html#c02">C02</a>/<a href="pl-cx.html#c03">C03</a></td><td>Sin pago, contrato y alta, el soporte NO inicia</td><td>Al go-live</td></tr>
+<tr><td>1</td><td>Soporte L1</td><td>Registrar TODO en Service Hub — incluso lo que llega por WhatsApp al ingeniero. Sin ticket no hay SLA, ni historial para renovación, ni memoria organizacional</td><td>HubSpot Service Hub</td><td>Ticket creado con canal de origen</td><td>Al recibir</td></tr>
+<tr><td>2</td><td>Soporte L1</td><td>Triage en la primera respuesta: severidad (S1–S4) + esquema contratado (5x8/Ext/24x7). Confirmar al cliente con número de ticket, quién lo atiende (por nombre) y cuándo será la siguiente actualización (<a href="pl-cx.html#c08">C08</a>)</td><td>Matriz de severidades</td><td>Cliente sabe qué esperar, cuándo y de quién</td><td>Dentro del SLA de 1a respuesta</td></tr>
+<tr><td>3</td><td>Soporte L1</td><td>Intentar resolución con base de conocimiento (meta: &gt;60% en L1). Cada resolución nueva alimenta la base</td><td>Base de conocimiento</td><td>Resuelto o escalado con diagnóstico</td><td>Según severidad</td></tr>
+<tr><td>4</td><td>L2 / Fabricante</td><td>Escalar con contexto completo: L2 (ingeniero del <a href="delivery.html#fabricantes">equipo del fabricante</a>) diagnostica a fondo; L3 va al fabricante con los SLAs pactados en <a href="cm-p01.html">CM.P01</a> F1. Conecta sigue siendo LA CARA ante el cliente y persigue al fabricante — nunca al revés</td><td>Matriz de escalación</td><td>Escalación con dueño interno</td><td>Inmediato al agotar nivel</td></tr>
+<tr><td>5</td><td>Soporte</td><td>S1: comunicar avance al cliente cada 2 h hasta workaround; escalación interna automática a <a href="posiciones.html#hod">HoD</a> a las 2 h y a <a href="posiciones.html#ceo">CEO</a> a las 6 h. En incidentes graves, primero la persona, luego el ticket: una llamada humana antes que el correo</td><td><a href="pl-cx.html#c08">C08</a></td><td>Cliente nunca pregunta "¿cómo va?"</td><td>Cada 2 h (S1)</td></tr>
+<tr><td>6</td><td>Soporte</td><td>Cerrar con causa raíz y solución aplicada documentadas + encuesta CSAT de 1 clic</td><td>Ticket + encuesta</td><td>Cierre completo, CSAT registrado</td><td>Al resolver</td></tr>
+<tr><td>7</td><td>Soporte → AM</td><td>Enviar cada mes el reporte de actividad de cada cliente al Account Manager; el AM llama personalmente a cada cliente: con actividad → estatus de sus tickets; sin actividad → conversación de seguimiento y salud de la relación (una voz conocida, no un correo automático)</td><td>Reporte mensual + llamada</td><td>100% de cuentas con llamada mensual del AM</td><td>Mensual</td></tr>
+<tr><td>8</td><td><a href="posiciones.html#cx">CX</a></td><td>Calcular health score mensual por cuenta (<a href="pl-dl.html#e06">DL.P04.E01</a>): 🔴 = alerta inmediata a Comercial (H04) + plan en 48 h; 🟢 con uso alto = candidata a upsell</td><td><a href="pl-dl.html#e06">DL.P04.E01</a></td><td>100% cuentas con score &lt; 30 días</td><td>Mensual</td></tr>
+</table>
+
+<h2>Handoffs</h2>
+<table>
+<tr><th>#</th><th>Entrega</th><th>Recibe</th><th>Qué</th><th>Cuándo</th><th>Criterio de calidad</th></tr>
+<tr><td>H04</td><td>Delivery (Soporte/CX)</td><td>Comercial</td><td>Health score + alertas de riesgo + oportunidades de upsell</td><td>Mensual · inmediato si 🔴</td><td>Score con evidencia; upsell con contexto</td></tr>
+<tr><td>H06</td><td>Delivery (Soporte)</td><td>Comercial (renovación)</td><td>Historial de tickets y cumplimiento de SLA del contrato</td><td>T-90 de cada renovación</td><td>Reporte del período completo</td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Cumplimiento de SLA (primera respuesta y resolución)</td><td>&gt; 95%</td><td>HubSpot Service Hub</td></tr>
+<tr><td>CSAT por ticket</td><td>≥ 4.5/5</td><td>Encuesta de cierre</td></tr>
+<tr><td>Tickets fuera de HubSpot ("canal fantasma")</td><td>0</td><td>Auditoría mensual</td></tr>
+<tr><td>Cuentas 🔴 sin plan de acción en 48 h</td><td>0</td><td><a href="pl-dl.html#e06">DL.P04.E01</a></td></tr>
+<tr><td>Cuentas con llamada mensual del AM</td><td>100%</td><td>Registro en HubSpot</td></tr>
+</table>
+
+<div class="touch"><b class="tag">Touchpoints con el cliente (experiencia homogénea)</b>
+El cliente en soporte recibe: confirmación inmediata con folio, severidad y el <b>nombre de quien lo atiende</b> (<a href="pl-cx.html#c08">C08</a>), avances proactivos (cada 2 h en S1, con llamada humana en lo grave), cierre con causa raíz, y cada mes una llamada de su Account Manager — la misma experiencia sea un banco 24x7 o una fintech 5x8, ajustando solo la ventana. Ver <a href="experiencia.html">Estándar de Experiencia</a>.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso DL.P04</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

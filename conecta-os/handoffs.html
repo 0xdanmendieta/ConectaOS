@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Matriz de Handoffs · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="gobierno.html">Gobierno</a> › Matriz de Handoffs</div>
+<h1><span class="pcode">GO · HANDOFFS</span>Matriz de Interacciones entre Áreas</h1>
+<p class="lead">Todo lo que cruza una frontera entre áreas es un handoff explícito: quién entrega qué, a quién, cuándo y con qué criterio de calidad. El receptor tiene <b>derecho de rechazo</b> si el criterio no se cumple.</p>
+
+<h2>Diagrama de interacciones</h2>
+<div class="diagram">
+<svg viewBox="0 0 860 440" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,Arial" font-size="12">
+  <defs><marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#5b6b7d"/></marker></defs>
+  <rect x="340" y="20" width="180" height="60" rx="10" fill="#fff4ec" stroke="#ff7a29" stroke-width="2"/><text x="430" y="46" text-anchor="middle" font-weight="700" fill="#b34700" font-size="14">COMERCIAL</text><text x="430" y="64" text-anchor="middle" fill="#b34700">CM</text>
+  <rect x="40" y="190" width="170" height="60" rx="10" fill="#e0edff" stroke="#1656c0" stroke-width="2"/><text x="125" y="216" text-anchor="middle" font-weight="700" fill="#0d3a8f" font-size="14">MARKETING</text><text x="125" y="234" text-anchor="middle" fill="#0d3a8f">MK</text>
+  <rect x="650" y="190" width="170" height="60" rx="10" fill="#dff5ef" stroke="#00b8a9" stroke-width="2"/><text x="735" y="216" text-anchor="middle" font-weight="700" fill="#0a6b52" font-size="14">DELIVERY</text><text x="735" y="234" text-anchor="middle" fill="#0a6b52">DL</text>
+  <rect x="340" y="360" width="180" height="60" rx="10" fill="#eee7fb" stroke="#5b2eaa" stroke-width="2"/><text x="430" y="386" text-anchor="middle" font-weight="700" fill="#5b2eaa" font-size="14">FINANZAS</text><text x="430" y="404" text-anchor="middle" fill="#5b2eaa">FI (dirección) · <a href="op-p01.html">OP.P01</a> Administración</text>
+  <!-- CM <-> MK -->
+  <path d="M345,70 C240,100 170,140 135,188" stroke="#5b6b7d" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
+  <text x="185" y="105" fill="#5b6b7d">H01 briefs, feedback, intel →</text>
+  <path d="M180,252 C250,290 330,200 385,84" stroke="#5b6b7d" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
+  <text x="200" y="290" fill="#5b6b7d">← H02 MQLs, contenido, eventos</text>
+  <!-- CM <-> DL/OP -->
+  <path d="M515,70 C620,100 690,140 725,188" stroke="#5b6b7d" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
+  <text x="560" y="105" fill="#5b6b7d">H03 deals ganados · H05/H06 técnica →</text>
+  <path d="M680,252 C610,290 530,200 475,84" stroke="#5b6b7d" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
+  <text x="480" y="290" fill="#5b6b7d">← H04 upsell, health, casos de éxito</text>
+  <!-- CM <-> AD -->
+  <line x1="410" y1="358" x2="410" y2="82" stroke="#5b6b7d" stroke-width="1.8" marker-end="url(#a)"/>
+  <text x="255" y="225" fill="#5b6b7d">H07 pricing, comisiones ↑</text>
+  <line x1="450" y1="82" x2="450" y2="358" stroke="#5b6b7d" stroke-width="1.8" marker-end="url(#a)"/>
+  <text x="462" y="225" fill="#5b6b7d">↓ H08 deals won, forecast, hitos</text>
+  <!-- AD to all -->
+  <path d="M340,390 C200,380 130,300 122,252" stroke="#5b2eaa" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#a)"/>
+  <path d="M520,390 C660,380 728,300 736,252" stroke="#5b2eaa" stroke-width="1.5" stroke-dasharray="5 4" fill="none" marker-end="url(#a)"/>
+  <text x="340" y="435" fill="#5b2eaa">H09 (Finanzas): presupuestos y dashboard · H10 (Administración/OP): contrataciones y compensación</text>
+</svg>
+</div>
+
+<h2>Matriz completa</h2>
+<table>
+<tr><th>#</th><th>De</th><th>A</th><th>Qué se entrega</th><th>Cuándo</th><th>Criterio de calidad (el receptor verifica)</th><th>Proceso</th></tr>
+<tr><td><b>H01</b></td><td>Comercial</td><td>Marketing</td><td>Briefs de campaña, feedback de campo, competitive intelligence, motivos de pérdida</td><td>Brief: al activar línea · Feedback: quincenal</td><td>Objetivo numérico, ICP ≥ 20 cuentas, driver de urgencia; feedback accionable</td><td><a href="mk-p02.html">MK.P02</a></td></tr>
+<tr><td><b>H02</b></td><td>Marketing</td><td>Comercial</td><td>MQLs calificados, contenido de ventas, eventos</td><td>Continuo</td><td>Fit de ICP verificado, contexto completo; Comercial contacta en &lt; 24 h</td><td><a href="cm-p02.html">CM.P02</a></td></tr>
+<tr><td><b>H03</b></td><td>Comercial</td><td>Delivery</td><td>Deal ganado: contrato, scope validado, expectativas, contactos</td><td>≤ 3 días post-firma</td><td>Acta <a href="pl-dl.html#e01">DL.P02.E01</a> al 100%; scope idéntico al validado por preventa</td><td><a href="dl-p02.html">DL.P02</a></td></tr>
+<tr><td><b>H04</b></td><td>Delivery (Soporte/CX)</td><td>Comercial</td><td>Oportunidades de upsell, customer health, casos de éxito</td><td>Mensual · inmediato si cuenta 🔴</td><td>Score con evidencia &lt; 30 días; upsell con contexto de necesidad</td><td><a href="dl-p04.html">DL.P04</a></td></tr>
+<tr><td><b>H05</b></td><td>Comercial ⇄ Delivery (Preventa)</td><td>—</td><td>Ida: solicitud de preventa · Vuelta: veredicto de viabilidad + insumos</td><td>Ida: al calificar · Vuelta: ≤ 5 días post-demo</td><td>Solicitud completa; veredicto vinculante con esfuerzo estimado</td><td><a href="dl-p01.html">DL.P01</a></td></tr>
+<tr><td><b>H06</b></td><td>Comercial/Preventa ⇄ Delivery (Implementación)</td><td>—</td><td>Ida: requerimientos y arquitecturas · Vuelta: viabilidad, estimaciones, historial de tickets (a T-90)</td><td>Pre-propuesta y T-90</td><td>Implementación confirma capacidad; historial completo del período</td><td><a href="dl-p03.html">DL.P03</a> / <a href="cm-p04.html">CM.P04</a></td></tr>
+<tr><td><b>H07</b></td><td>Finanzas</td><td>Comercial</td><td>Pricing aprobado, matriz de descuentos, esquema de comisiones</td><td>Por línea / anual</td><td>Documentado, sin ambigüedad, firmado por las partes</td><td><a href="fi-p01.html">FI.P01</a></td></tr>
+<tr><td><b>H08</b></td><td>Comercial/Delivery</td><td>Finanzas</td><td>Deals won, forecast mensual, actas de aceptación (hitos facturables)</td><td>Al evento · día hábil 1</td><td>Condiciones verificadas contra contrato; actas firmadas</td><td><a href="fi-p01.html">FI.P01</a></td></tr>
+<tr><td><b>H09</b></td><td>Finanzas</td><td>CEO / Todos</td><td>Dashboard financiero semanal, presupuestos</td><td>Viernes</td><td>Datos conciliados, sin pendientes</td><td><a href="fi-p01.html">FI.P01</a></td></tr>
+<tr><td><b>H10</b></td><td>Administración (OP) ⇄ Todas las áreas</td><td>—</td><td>Ida: contrataciones con plan 30-60-90 · Vuelta: KPIs para evaluación</td><td>Día 1 · trimestral</td><td>Perfil desde ficha de posición; evaluación con datos de HubSpot</td><td><a href="op-p01.html">OP.P01</a></td></tr>
+</table>
+
+<h2>Reglas de los handoffs</h2>
+<div class="callout rule"><b class="tag">Derecho de rechazo</b>Un handoff que no cumple el criterio de calidad se rechaza con lista de faltantes, el mismo día. El emisor corrige en 48 h. Rechazar no es conflicto: aceptar basura sí lo es (solo que diferido).</div>
+<div class="callout rule"><b class="tag">El emisor es dueño hasta la aceptación</b>El handoff no "se lanzó por encima de la barda": está entregado cuando el receptor lo acepta explícitamente.</div>
+<div class="callout rule"><b class="tag">Fricción recurrente = agenda de gobierno</b>Si el mismo handoff se rechaza 3 veces en un mes, es un problema de proceso, no de personas: va al Comité de Dirección.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Gobierno</footer>
+</main></div>
+<script src="nav.js"></script>
+</body></html>

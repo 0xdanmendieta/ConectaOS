@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Service Blueprint · Conecta OS</title><link rel="stylesheet" href="styles.css">
+<style>
+table.bp td{font-size:12.5px;vertical-align:top;min-width:130px}
+table.bp tr.zone td:first-child, table.bp td.zone{background:#eef2f8;font-weight:700;color:#0d1b2e;width:150px;font-size:12px}
+table.bp tr.cliente td{background:#fff9e0}
+table.bp tr.front td{background:#fff4ec}
+table.bp tr.back td{background:#eef3fb}
+table.bp tr.sys td{background:#f4f6fa}
+table.bp tr.evid td{background:#eaf7f1}
+table.bp tr.std td{background:#fdeeee}
+table.bp tr.cliente td.zone,table.bp tr.front td.zone,table.bp tr.back td.zone,table.bp tr.sys td.zone,table.bp tr.evid td.zone,table.bp tr.std td.zone{background:#eef2f8}
+.linea{border:none;border-top:3px dashed #e0a400;margin:2px 0}
+</style></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › Service Blueprint</div>
+<h1><span class="pcode">CONECTA OS · BLUEPRINT</span>Service Blueprint del Cliente</h1>
+<p class="lead">La metodología Conecta es <b>customer-human centric</b>: se diseña desde lo que el cliente vive, no desde lo que las áreas hacen. Este blueprint recorre el journey completo — de prospecto a promotor — mostrando en cada etapa qué hace el cliente, qué ve (frontstage), qué pasa detrás (backstage con sus procesos), qué sistemas lo soportan y cuál es el estándar de experiencia comprometido.</p>
+
+<h2>Blueprint end-to-end</h2>
+<div style="overflow-x:auto">
+<table class="bp">
+<tr><th style="width:150px">Etapa →</th><th>1 · DESCUBRE</th><th>2 · EVALÚA</th><th>3 · DECIDE Y COMPRA</th><th>4 · ONBOARDING</th><th>5 · OPERA</th><th>6 · RENUEVA Y EXPANDE</th></tr>
+<tr class="cliente"><td class="zone">ACCIONES DEL CLIENTE</td>
+<td>Lee el Reporte H1, ve el LinkedIn Live, recibe un email con SU trigger regulatorio</td>
+<td>Toma la reunión discovery, involucra a su equipo técnico, define criterios de éxito, ve la demo/PoC</td>
+<td>Recibe y negocia la propuesta, valida con su comité, firma</td>
+<td>Asiste al kickoff, entrega prerrequisitos, valida el plan</td>
+<td>Usa el producto, reporta incidentes, recibe reportes y QBRs</td>
+<td>Recibe contacto proactivo a T-90, revisa el valor del año, renueva y considera el upsell</td></tr>
+<tr><td colspan="7" style="padding:0;border:none"><hr class="linea"><div style="text-align:right;font-size:10.5px;color:#8a6d00;font-weight:700;padding:0 8px">LÍNEA DE INTERACCIÓN — todo lo de abajo existe para que lo de arriba sea impecable</div></td></tr>
+<tr class="front"><td class="zone">FRONTSTAGE<br>(quién da la cara)</td>
+<td>Marketing: pieza con dato propio y CTA · Vendedor: primer contacto <a href="pl-cx.html#c01">C01</a> en &lt;24 h</td>
+<td>Vendedor: discovery con agenda <a href="pl-cx.html#c02">C02</a> y minuta <a href="pl-cx.html#c03">C03</a> · Preventa: demo contra criterios firmados</td>
+<td>Vendedor: propuesta presentada en reunión <a href="pl-cx.html#c04">C04</a> · Si no compra: cierre digno <a href="pl-cx.html#c05">C05</a></td>
+<td>Vendedor: bienvenida <a href="pl-cx.html#c06">C06</a> · Head of Delivery + PM: kickoff ≤10 días · PM: único punto de contacto</td>
+<td>PM: reporte semanal <a href="pl-cx.html#c07">C07</a> · Soporte: tickets con avances proactivos <a href="pl-cx.html#c08">C08</a> · CSM: QBR trimestral</td>
+<td>Vendedor Renovaciones: aviso T-90 <a href="pl-cx.html#c09">C09</a> y revisión anual de valor · CSM: propuesta de expansión con evidencia</td></tr>
+<tr class="back"><td class="zone">BACKSTAGE<br>(procesos internos)</td>
+<td><a href="mk-p01.html">MK.P01</a> Contenido · <a href="mk-p02.html">MK.P02</a> Campañas · <a href="cm-p02.html">CM.P02</a> Prospección · <a href="cm-p01.html">CM.P01</a> certificación previa</td>
+<td><a href="cm-p02.html">CM.P02</a> calificación BANT-F · <a href="dl-p01.html">DL.P01</a> Preventa · <a href="cm-p03.html">CM.P03</a> pipeline</td>
+<td><a href="cm-p03.html">CM.P03</a> stages 4–6 · <a href="fi-p01.html">FI.P01</a> aprobación de cotización · <a href="cm-p05.html">CM.P05</a> battlecards</td>
+<td><a href="dl-p02.html">DL.P02</a> handoff con acta · <a href="dl-p03.html">DL.P03</a> plan y prerrequisitos · <a href="capacidad.html">WIP del PM verificado</a> (la entrega con custodia es su Fase A)</td>
+<td><a href="dl-p03.html">DL.P03</a> implementación · <a href="dl-p04.html">DL.P04</a> soporte y health score · <a href="dl-p05.html">DL.P05</a> ingenieros certificados</td>
+<td><a href="cm-p04.html">CM.P04</a> renovaciones desde T-90 · <a href="dl-p04.html">DL.P04</a> H04 upsell/salud · <a href="fi-p01.html">FI.P01</a> facturación</td></tr>
+<tr class="sys"><td class="zone">SISTEMAS DE SOPORTE</td>
+<td>HubSpot Marketing (forms, campañas) · LinkedIn</td>
+<td>HubSpot Deals + Sequences · Sandbox por línea</td>
+<td>HubSpot Quotes · matriz de aprobación FI</td>
+<td>HubSpot (acta H03) · plan de proyecto</td>
+<td>HubSpot Service Hub (SLAs, CSAT) · runbooks</td>
+<td>Workflow T-90 · AR aging · dashboard FI</td></tr>
+<tr class="evid"><td class="zone">EVIDENCIA<br>(lo que el cliente conserva)</td>
+<td>Reporte/framework con datos citables</td>
+<td>Agenda, minuta, criterios de éxito por escrito, resultados de demo</td>
+<td>Propuesta formal, cotización clara, contrato</td>
+<td>Acta de kickoff, plan con hitos, calendario de reportes, registro de custodia del equipo (si hay hardware)</td>
+<td>Reportes semanales, tickets con causa raíz, as-built, actas de aceptación</td>
+<td>Revisión anual de valor con SUS datos, propuesta de renovación</td></tr>
+<tr class="std"><td class="zone">ESTÁNDAR DE EXPERIENCIA<br>(compromiso medible)</td>
+<td>MQL contactado &lt; 24 h · 0 claims sin evidencia</td>
+<td>Respuesta de preventa ≤ 48 h · demo ≤ 10 días · 0 PoCs sin criterios firmados</td>
+<td>Cotización aprobada en 24–48 h · propuesta = lo validado técnicamente, sin sorpresas</td>
+<td>Kickoff ≤ 10 días · el cliente NUNCA repite lo que ya dijo · satisfacción semana 1 ≥ 8/10</td>
+<td>SLA &gt; 95% · S1 con avance cada 2 h · reporte semanal el mismo día · CSAT ≥ 4.5/5</td>
+<td>Contacto a T-90, nunca factura sorpresa · firma antes de T-30 · NPS &gt; 50</td></tr>
+</table>
+</div>
+
+<h2>Momentos de la verdad (MoT)</h2>
+<p>Seis momentos donde la confianza se gana o se pierde de forma desproporcionada. Cada uno tiene dueño, estándar y plantilla:</p>
+<table>
+<tr><th>#</th><th>Momento</th><th>Lo que el cliente se pregunta</th><th>Estándar Conecta</th><th>Dueño</th><th>Plantilla</th></tr>
+<tr><td>1</td><td>Primer contacto</td><td>"¿Esto es spam o alguien que entiende mi problema?"</td><td>Mensaje con SU trigger en la primera línea; nunca plantilla genérica fría</td><td>Vendedor</td><td><a href="pl-cx.html#c01">C01</a></td></tr>
+<tr><td>2</td><td>La demo / PoC</td><td>"¿Me están vendiendo humo?"</td><td>Criterios de éxito definidos por el cliente ANTES; resultados contra esos criterios; honestidad si algo no es viable</td><td>Preventa</td><td><a href="pl-cm.html#e09">DL.P01.E01</a></td></tr>
+<tr><td>3</td><td>Después de firmar</td><td>"¿Ya que pagué, me van a abandonar?"</td><td>Bienvenida en 24 h + kickoff ≤ 10 días + cero re-explicaciones</td><td>Vendedor → HoD</td><td><a href="pl-cx.html#c06">C06</a></td></tr>
+<tr><td>4</td><td>El primer incidente grave (S1)</td><td>"¿De qué lado están?"</td><td>Avance proactivo cada 2 h; Conecta persigue al fabricante, el cliente no persigue a nadie</td><td>Soporte + HoD</td><td><a href="pl-cx.html#c08">C08</a></td></tr>
+<tr><td>5</td><td>Un error de Conecta</td><td>"¿Lo van a esconder?"</td><td>Reconocerlo primero, plan de corrección con fechas, seguimiento hasta cerrar. Sin excusas</td><td>Head del área + CEO si es mayor</td><td><a href="experiencia.html">Estándar</a></td></tr>
+<tr><td>6</td><td>La renovación</td><td>"¿Solo me buscan para cobrar?"</td><td>Contacto a T-90 con revisión de valor del año usando SUS datos — la factura nunca es la primera noticia</td><td>Vendedor Renovaciones</td><td><a href="pl-cx.html#c09">C09</a></td></tr>
+</table>
+
+<div class="callout ok"><b class="tag">El principio rector</b>Cada proceso del OS tiene su lane de "Cliente" en el diagrama BPMN y su sección de touchpoints. Si al diseñar o cambiar un proceso no puedes decir qué mejora para el cliente, el cambio no pasa el gate de <a href="gobierno.html">Gobierno</a>.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Service Blueprint</footer>
+</main></div>
+<script src="nav.js"></script>
+</body></html>

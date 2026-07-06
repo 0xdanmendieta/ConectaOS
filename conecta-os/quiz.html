@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reto Conecta · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › Reto Conecta</div>
+<h1><span class="pcode">CONECTA OS · RETO</span>🎮 Reto Conecta</h1>
+<p class="lead">14 preguntas para probar qué tanto te sabes el sistema operativo — incluye los deals con hardware de fabricante. Respuesta inmediata, link para repasar y tu score al final. Nadie te está calificando… pero tu racha sí cuenta. 😏</p>
+
+<div class="qbar"><i id="qprog" style="width:0%"></i></div>
+<div id="quiz"></div>
+
+<div class="qcard" id="result" style="display:none">
+  <div class="score-emoji" id="remoji"></div>
+  <h3 id="rtitle" style="text-align:center"></h3>
+  <p id="rtext" style="text-align:center"></p>
+  <p style="text-align:center;margin-top:18px">
+    <button class="bigbtn" onclick="location.reload()">↻ Intentar de nuevo</button>
+    &nbsp;<a class="bigbtn" href="mapa.html" style="background:#222">Repasar en el mapa</a>
+  </p>
+</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Reto Conecta</footer>
+</main></div>
+<script src="nav.js"></script>
+<script>
+(function(){
+var Q=[
+ {q:"Regla de oro #1 del OS: 'Lo que no está en HubSpot…'",o:["…se registra mañana","…no existe","…se anota en Excel","…lo recuerda Carlos"],a:1,link:"ayuda.html",why:"No hay forecast, ni soporte, ni comisión sin registro. Es la Regla 1 del sistema."},
+ {q:"¿Cuántos proyectos simultáneos puede llevar un PM como máximo?",o:["2","4 (máx 1 misión crítica)","8","Los que aguante"],a:1,link:"capacidad.html",why:"WIP de implementación: 4 proyectos, y solo 1 de misión crítica tipo Hermes/SPEI."},
+ {q:"¿Cuándo arranca el proceso de renovación de un contrato?",o:["Cuando el cliente llama","30 días antes","90 días antes (T-90)","Al vencerse"],a:2,link:"cm-p04.html",why:"El workflow de HubSpot crea el deal a T-90. La factura nunca es la primera noticia."},
+ {q:"Te llega un MQL de una campaña. ¿En cuánto tiempo debes contactarlo?",o:["Cuando haya hueco","Esta semana","En menos de 24 horas","En 48 horas"],a:2,link:"experiencia.html",why:"SLA del handoff H02: contacto en < 24 h referenciando la pieza que descargó (C01)."},
+ {q:"Terminas una reunión con un cliente. ¿Qué DEBES hacer el mismo día?",o:["Nada, ya quedó en mi cabeza","Nota en HubSpot + minuta C03 + task futura","Avisarle a mi jefe","Publicarlo en LinkedIn"],a:1,link:"cm-p03.html",why:"3 bullets en HubSpot, minuta al cliente en 24 h y next step con dueño y fecha."},
+ {q:"¿Calificación mínima para aprobar el assessment de certificación de una línea?",o:["60%","70%","80%","100%"],a:2,link:"cm-p01.html",why:"80%. Y si todos sacan 100%, el examen era demasiado fácil (CM.P01.E02)."},
+ {q:"¿Cuántos criterios BANT-F necesita un lead para volverse SQL?",o:["2 de 5","3 de 5","4 de 5","5 de 5"],a:2,link:"cm-p02.html",why:"≥ 4/5. Con 3 va a nurturing de Marketing; con menos, descarte con motivo."},
+ {q:"Recibes un handoff incompleto de otra área. ¿Qué haces?",o:["Lo aceptas para no pelear","Lo completas tú","Lo rechazas con lista de faltantes el mismo día","Se lo cuentas al CEO"],a:2,link:"handoffs.html",why:"Derecho de rechazo: el emisor corrige en 48 h. Rechazar no es conflicto — aceptar basura sí (diferido)."},
+ {q:"Incidente S1 (producción caída): ¿cada cuánto se comunica avance al cliente?",o:["Cada 2 horas","Una vez al día","Cuando haya novedad","Cuando pregunte"],a:0,link:"dl-p04.html",why:"Cada 2 h hasta el workaround. El cliente nunca debería preguntar '¿cómo va?'."},
+ {q:"¿Máximo de días entre la firma del contrato y el kickoff con el cliente?",o:["5","10","20","30"],a:1,link:"dl-p02.html",why:"≤ 10 días hábiles, con bienvenida C06 en las primeras 24 h. Y el cliente no repite NADA."},
+ {q:"Un rol opera al 85% de su capacidad durante un mes. ¿Qué pasa?",o:["Nada, aguanta","Se le aplaude","Se dispara decisión de contratar o redistribuir","Se le quitan vacaciones"],a:2,link:"capacidad.html",why:"Regla del 80%: saturación sostenida 4 semanas = decisión en el Comité. Antes de que la experiencia se degrade."},
+ {q:"¿Qué necesita una PoC ANTES de arrancar?",o:["Ganas y café","Criterios de éxito firmados por el cliente","Un contrato","Permiso del fabricante"],a:1,link:"dl-p01.html",why:"Sin criterios por escrito, la PoC se vuelve consultoría gratis infinita."},
+ {q:"Deal de hardware criptográfico: ¿qué se requiere ANTES de enviar la propuesta al cliente?",o:["Que lo apruebe el vendedor","Triple Vo.Bo.: técnico + financiero + negocio","Solo la cotización de Thales","Nada, se envía y ya"],a:1,link:"cm-p03.html",why:"Líder técnico del equipo de fabricante, CFO (con FX validado) y Dirección. Sin triple autorización la propuesta no sale — y sale el mismo día que se autoriza."},
+ {q:"El HSM llegó de Thales. ¿Cuándo se le entrega al cliente?",o:["En cuanto llega","Cuando el PM tenga tiempo","Cuando el pago está confirmado (entrega vs pago)","Cuando firme el contrato"],a:2,link:"dl-p03.html",why:"Entrega contra pago (Fase A de DL.P03): el CFO valida antes de liberar, y todo el trayecto queda con trazabilidad: serie, custodio, transporte y firma."}
+];
+var host=document.getElementById('quiz'),score=0,answered=0;
+Q.forEach(function(item,i){
+  var card=document.createElement('div');card.className='qcard';card.id='q'+i;
+  var h='<div class="qnum">Pregunta '+(i+1)+' de '+Q.length+'</div><h3>'+item.q+'</h3>';
+  item.o.forEach(function(op,j){ h+='<button class="opt" data-q="'+i+'" data-j="'+j+'">'+op+'</button>'; });
+  h+='<div class="qfeed" id="f'+i+'"></div>';
+  card.innerHTML=h; host.appendChild(card);
+  if(i>0) card.style.display='none';
+});
+host.addEventListener('click',function(e){
+  var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+  var i=+b.dataset.q, j=+b.dataset.j, item=Q[i];
+  var card=document.getElementById('q'+i);
+  card.querySelectorAll('.opt').forEach(function(o,k){
+    o.disabled=true;
+    if(k===item.a) o.classList.add('right');
+  });
+  var f=document.getElementById('f'+i);
+  if(j===item.a){ score++; f.className='qfeed show ok'; f.innerHTML='✅ <b>¡Exacto!</b> '+item.why+' &nbsp;<a href="'+item.link+'">Ver proceso →</a>'; }
+  else{ b.classList.add('wrong'); f.className='qfeed show no'; f.innerHTML='❌ <b>Casi.</b> '+item.why+' &nbsp;<a href="'+item.link+'">Repásalo aquí →</a>'; }
+  answered++;
+  document.getElementById('qprog').style.width=Math.round(100*answered/Q.length)+'%';
+  setTimeout(function(){
+    if(answered<Q.length){
+      var next=document.getElementById('q'+(i+1));
+      if(next){ next.style.display='block'; next.scrollIntoView({behavior:'smooth',block:'center'}); }
+    } else {
+      var r=document.getElementById('result');
+      var pct=Math.round(100*score/Q.length);
+      var emo,tit,txt;
+      if(pct===100){emo='🏆';tit='¡Perfecto! '+score+'/'+Q.length;txt='Te sabes el OS mejor que quien lo escribió. Presume tu racha en el pipeline review del lunes.';}
+      else if(pct>=75){emo='🔥';tit='¡Muy bien! '+score+'/'+Q.length;txt='Dominas el sistema. Repasa los links de las que fallaste y ve por el 100%.';}
+      else if(pct>=50){emo='🚀';tit='Vas bien: '+score+'/'+Q.length;txt='Ya tienes la mitad del OS en la cabeza. Date una vuelta por el tour del mapa y reintenta.';}
+      else{emo='🌱';tit='Apenas germinando: '+score+'/'+Q.length;txt='Tranqui: corre el ▶ tour del mapa de procesos, lee 2-3 procesos y vuelve. El OS se aprende jugando.';}
+      document.getElementById('remoji').textContent=emo;
+      document.getElementById('rtitle').textContent=tit;
+      document.getElementById('rtext').textContent=txt;
+      r.style.display='block'; r.scrollIntoView({behavior:'smooth',block:'center'});
+      try{ localStorage.setItem('cos-quiz-best', Math.max(score, +(localStorage.getItem('cos-quiz-best')||0))); }catch(e){}
+    }
+  }, 900);
+});
+})();
+</script>
+</body></html>

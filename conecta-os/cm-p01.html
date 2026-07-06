@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CM.P01 Onboarding de Fabricante · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="comercial.html">Comercial</a> › CM.P01</div>
+<h1><span class="pcode">CM.P01</span>Onboarding de Fabricante</h1>
+<p class="lead">De la evaluación de un fabricante a la primera venta replicable. Aplica la <b>misma vara</b> a fabricantes externos (Thales, Google Cloud, nuevos vendors) e internos (Tesseract, Hermes): nadie sale a vender un producto sin materiales completos y certificación aprobada.</p>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>CM.P01</code></td></tr>
+<tr><th>Owner</th><td>Head of Sales / CRO (Fase 0 aprueba el CEO)</td></tr>
+<tr><th>Trigger</th><td>Decisión de evaluar un nuevo fabricante, lanzamiento de línea interna (ej. Hermes), o reactivación de línea dormida (ej. GCP)</td></tr>
+<tr><th>Inputs</th><td>Propuesta de representación, materiales del fabricante, criterio de selección Conecta (high-tech, blue ocean, sector financiero mexicano)</td></tr>
+<tr><th>Outputs</th><td>Acuerdo firmado, equipo certificado, campaña de prospección activa, lighthouse customer cerrado, playbook documentado</td></tr>
+<tr><th>Duración objetivo</th><td>Fase 0–2: 30 días · Firma → primer deal: ≤ 120 días</td></tr>
+<tr><th>Herramientas</th><td>HubSpot (pipeline por línea), repositorio de materiales, sandbox del fabricante</td></tr>
+<tr><th>Métrica de éxito</th><td>Tiempo firma → primer deal cerrado · Tasa de aprobación de certificación · Win rate primeros 3 meses</td></tr>
+</table>
+
+<h2>Diagrama BPMN</h2>
+<div class="diagram" id="bp-cmp01"></div>
+<script type="application/bpmn+json" data-target="bp-cmp01">
+{"lanes":[
+ {"id":"cli","label":"Cliente lighthouse","color":"yellow","interaction":true},
+ {"id":"dir","label":"CEO + Head of Sales","color":"orange"},
+ {"id":"eq","label":"Vendedor + Preventa","color":"blue"},
+ {"id":"fab","label":"Fabricante","color":"gray"}
+],"nodes":[
+ {"id":"s","lane":"dir","col":0,"type":"start","label":["Candidato a","fabricante"]},
+ {"id":"t1","lane":"dir","col":1,"type":"task","label":["F0 Evaluar fit:","blue ocean, margen,","sector financiero"]},
+ {"id":"g1","lane":"dir","col":2,"type":"gateway","label":["¿GO?"]},
+ {"id":"e0","lane":"fab","col":2,"type":"end","label":["NO-GO documentado","y archivado"]},
+ {"id":"t2","lane":"fab","col":3,"type":"task","label":["F1 Firma + entrega","checklist de entrada"]},
+ {"id":"d1","lane":"dir","col":3,"type":"doc","label":["CM.P01.E01"],"href":"pl-cm.html#e01"},
+ {"id":"g2","lane":"dir","col":4,"type":"gateway","label":["¿Checklist 8/8","con calidad?"]},
+ {"id":"t3","lane":"eq","col":5,"type":"task","label":["F2 Certificación:","assessment ventas +","sandbox preventa"]},
+ {"id":"t4","lane":"eq","col":6,"type":"task","label":["F3-F4 Campaña (H01)","y detección de","oportunidades"]},
+ {"id":"t5","lane":"eq","col":7,"type":"task","label":["F5 Cerrar lighthouse","y documentar todo"]},
+ {"id":"m1","lane":"cli","col":7,"type":"task","label":["Cliente valida valor","y acepta ser referencia"]},
+ {"id":"e1","lane":"dir","col":8,"type":"end","label":["F6 Escala: playbook","replicable"]}
+],"flows":[
+ {"f":"s","t":"t1"},
+ {"f":"t1","t":"g1"},
+ {"f":"g1","t":"e0","label":"No"},
+ {"f":"g1","t":"t2","label":"Sí: firmar"},
+ {"f":"t2","t":"d1","dashed":true,"label":"entrega"},
+ {"f":"d1","t":"g2"},
+ {"f":"g2","t":"t2","label":"Incompleto: no avanza","loop":true},
+ {"f":"g2","t":"t3","label":"Sí"},
+ {"f":"t3","t":"t4"},
+ {"f":"t4","t":"t5"},
+ {"f":"t5","t":"m1","dashed":true,"label":"experiencia estándar"},
+ {"f":"m1","t":"t5","dashed":true,"label":"feedback"},
+ {"f":"t5","t":"e1"}
+],"caption":"CM.P01 — la certificación (F2) y el checklist (F1) son compuertas: sin 8/8 y sin assessment aprobado, nadie sale a vender."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>1</td><td><a href="posiciones.html#ceo">CEO</a> + <a href="posiciones.html#hos">HoS</a></td><td>Evaluar el fabricante contra el criterio Conecta: high-tech top, blue ocean, sector financiero MX, margen 15–30%, no canibaliza líneas</td><td>Sección F0 de <a href="pl-cm.html#e01">CM.P01.E01</a></td><td>GO / NO-GO firmado por CEO (NO-GO también se archiva)</td><td>Semana 1</td></tr>
+<tr><td>2</td><td>Head of Sales + Legal</td><td>Firmar acuerdo de representación (margen, territorio, SLAs del fabricante) y exigir el checklist de entrada completo</td><td>Contrato + <a href="pl-cm.html#e01">CM.P01.E01</a></td><td>Los 8 materiales recibidos y con calidad OK</td><td>Semanas 2–3</td></tr>
+<tr><td>3</td><td>Vendedores asignados</td><td>Capacitarse con el material de F1 y presentar el assessment: pitch de 2 min, 3 objeciones, pricing sin ayuda</td><td><a href="pl-cm.html#e02">CM.P01.E02</a></td><td>Calificación ≥ 80% (reprobar = reevaluar en 2 semanas)</td><td>Semana 4</td></tr>
+<tr><td>4</td><td><a href="posiciones.html#pv">Preventa</a></td><td>Completar deployment de punta a punta en sandbox y documentar la realidad técnica vs la ficha del fabricante</td><td><a href="pl-cm.html#e03">CM.P01.E03</a> · <a href="dl-p05.html">DL.P05</a></td><td>Informe entregado; deployment reproducible por otro ingeniero</td><td>Semana 4</td></tr>
+<tr><td>5</td><td>HoS + <a href="posiciones.html#hom">Marketing</a></td><td>Construir ICP con ≥ 20 cuentas nombradas, mensajería con diferenciadores validados y brief de campaña (handoff <a href="handoffs.html">H01</a>)</td><td><a href="pl-cm.html#e04">CM.P02.E01</a> + <a href="pl-mk.html#e01">MK.P02.E01</a></td><td>Brief aceptado por Marketing; pipeline de la línea creado en HubSpot</td><td>Semanas 5–6</td></tr>
+<tr><td>6</td><td>Vendedor de la línea</td><td>Activar triggers de compra (regulatorio, renovación de competidor, proyecto nuevo) y ejecutar <a href="cm-p02.html">CM.P02</a> contra el ICP</td><td>HubSpot sequences</td><td>≥ 3 reuniones/semana con cuentas del ICP</td><td>Continuo</td></tr>
+<tr><td>7</td><td>Vendedor + HoS</td><td>Seleccionar y cerrar el lighthouse: cliente con urgencia real, alcance controlado, dispuesto a ser referencia. Documentar ciclo, objeciones, pricing y esfuerzo</td><td>HubSpot + <a href="pl-dl.html#e02">CM.P05.E02</a></td><td>Primer deal closed-won + post-mortem del lighthouse</td><td>≤ 120 días desde firma</td></tr>
+<tr><td>8</td><td>Head of Sales</td><td>Incorporar aprendizajes al playbook (<a href="cm-p05.html">CM.P05</a>), replicar en más cuentas y revisar la línea trimestralmente: invertir, mantener o descontinuar</td><td>Playbook + <a href="metricas.html">dashboard</a></td><td>Conversión por etapa medida y cuello de botella identificado</td><td>Trimestral</td></tr>
+</table>
+
+<div class="touch"><b class="tag">Touchpoints con el cliente (experiencia homogénea)</b>
+El lighthouse recibe el trato estándar del <a href="experiencia.html">Estándar de Experiencia</a>: agenda 24 h antes de cada reunión (<a href="pl-cx.html#c02">plantilla C02</a>), minuta en 24 h (<a href="pl-cx.html#c03">C03</a>) y un único punto de contacto. Al cliente lighthouse se le dice explícitamente que es el primero — la transparencia se compensa con condiciones preferentes y atención directa del CEO.</div>
+
+<h2>Entregables</h2>
+<table>
+<tr><th>Código</th><th>Entregable</th><th>Fase</th><th>Plantilla</th></tr>
+<tr><td><code><a href="pl-cm.html#e01">CM.P01.E01</a></code></td><td>Checklist de Entrada de Fabricante (incluye evaluación GO/NO-GO)</td><td>F0–F1</td><td><a class="tpl-link" href="pl-cm.html#e01">abrir</a></td></tr>
+<tr><td><code><a href="pl-cm.html#e02">CM.P01.E02</a></code></td><td>Assessment de Certificación "Listo para Vender"</td><td>F2</td><td><a class="tpl-link" href="pl-cm.html#e02">abrir</a></td></tr>
+<tr><td><code><a href="pl-cm.html#e03">CM.P01.E03</a></code></td><td>Informe de Deployment en Sandbox (preventa)</td><td>F2</td><td><a class="tpl-link" href="pl-cm.html#e03">abrir</a></td></tr>
+<tr><td><code><a href="pl-mk.html#e01">MK.P02.E01</a></code></td><td>Brief de Campaña por línea</td><td>F3</td><td><a class="tpl-link" href="pl-mk.html#e01">abrir</a></td></tr>
+<tr><td><code><a href="pl-dl.html#e02">CM.P05.E02</a></code></td><td>Post-mortem del Lighthouse</td><td>F5</td><td><a class="tpl-link" href="pl-dl.html#e02">abrir</a></td></tr>
+</table>
+
+<h2>Handoffs</h2>
+<table>
+<tr><th>#</th><th>Entrega</th><th>Recibe</th><th>Qué</th><th>Cuándo</th><th>Criterio de calidad</th></tr>
+<tr><td>H01</td><td>Comercial</td><td>Marketing</td><td>Brief de campaña + ICP + diferenciadores validados</td><td>Fin de F2</td><td>ICP con ≥ 20 cuentas nombradas; 3 objeciones con respuesta; pricing de referencia</td></tr>
+<tr><td>H06</td><td>Comercial</td><td>Delivery (Implementación)</td><td>Ficha técnica + informe sandbox</td><td>Fin de F2</td><td>Deployment reproducible por otro ingeniero sin ayuda</td></tr>
+<tr><td>H07</td><td>Finanzas</td><td>Comercial</td><td>Estructura de pricing aprobada y esquema de comisión de la línea</td><td>Fin de F1</td><td>Márgenes y niveles de descuento definidos por escrito</td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Tiempo firma → primer deal cerrado</td><td>≤ 120 días</td><td>HubSpot + fechas del acta</td></tr>
+<tr><td>Tasa de aprobación de certificación (1er intento)</td><td>70–90% (si es 100%, el examen es demasiado fácil)</td><td>Registros de assessment</td></tr>
+<tr><td>Win rate primeros 3 meses de la línea</td><td>&gt; 20%</td><td>HubSpot</td></tr>
+<tr><td>Checklist de entrada completo antes de F2</td><td>100%</td><td>Acta <a href="pl-cm.html#e01">CM.P01.E01</a></td></tr>
+</table>
+
+<h2>Aplicación inmediata (julio 2026)</h2>
+<div class="callout ok"><b class="tag">Hermes</b>Arranca preventa en julio. Ejecutar F1→F3 en 4 semanas: checklist de entrada (Erika Baez tiene value proposition y competitive analysis en curso), certificación del vendedor estratégico y preventa, campaña con el driver regulatorio SPEI 2.0 (deadline Banxico octubre 2026). El lighthouse natural sale del pipeline existente (Acreimex).</div>
+<div class="callout ok"><b class="tag">GCP</b>Está en cero: correr F0 formalmente. Si no hay GO claro con owner y meta, mejor NO-GO explícito que línea zombie.</div>
+<div class="callout ok"><b class="tag">Tesseract y Thales</b>Ya venden, pero el equipo no está estandarizado: correr F2 (certificación) retroactiva en agosto. Nadie queda exento del assessment.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso CM.P01</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

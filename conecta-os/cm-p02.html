@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CM.P02 Prospección Outbound · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="comercial.html">Comercial</a> › CM.P02</div>
+<h1><span class="pcode">CM.P02</span>Prospección Outbound</h1>
+<p class="lead">Genera pipeline nuevo de forma predecible: investigación de cuentas contra el ICP, secuencia de contacto multicanal con cadencia fija, calificación BANT-F y handoff limpio a preventa.</p>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>CM.P02</code></td></tr>
+<tr><th>Owner</th><td>Vendedor de cada línea (supervisa Head of Sales)</td></tr>
+<tr><th>Trigger</th><td>Campaña activa de una línea (salida de <a href="cm-p01.html">CM.P01</a> F3) · gap de pipeline coverage &lt; 3x · trigger de compra detectado</td></tr>
+<tr><th>Inputs</th><td>ICP de la línea (<code><a href="pl-cm.html#e04">CM.P02.E01</a></code>), lista de cuentas objetivo, mensajería de campaña (MK), battlecards</td></tr>
+<tr><th>Outputs</th><td>Leads calificados (SQL) creados como deals en HubSpot stage "Calificado", con nota de calificación</td></tr>
+<tr><th>Frecuencia</th><td>Continua; bloques de prospección agendados mínimo 3 h/semana por vendedor</td></tr>
+<tr><th>Herramientas</th><td>HubSpot (sequences, tasks, deals), LinkedIn Sales Navigator, correo/teléfono</td></tr>
+<tr><th>Métrica de éxito</th><td>Reuniones agendadas/semana · tasa de conversión a oportunidad · tiempo promedio de calificación</td></tr>
+</table>
+
+<h2>Diagrama BPMN</h2>
+<div class="diagram" id="bp-cmp02"></div>
+<script type="application/bpmn+json" data-target="bp-cmp02">
+{"lanes":[
+ {"id":"pro","label":"Prospecto","color":"yellow","interaction":true},
+ {"id":"ven","label":"Vendedor","color":"orange"},
+ {"id":"hub","label":"HubSpot (sistema)","color":"gray"}
+],"nodes":[
+ {"id":"s","lane":"ven","col":0,"type":"start","label":["Campaña activa o","coverage < 3x"]},
+ {"id":"t1","lane":"ven","col":1,"type":"task","label":["Investigar cuenta","vs ICP (máx 15 min)"]},
+ {"id":"t2","lane":"hub","col":2,"type":"task","label":["Registrar cuenta y","2-3 contactos ANTES","del primer toque"]},
+ {"id":"t3","lane":"ven","col":3,"type":"task","label":["Ejecutar secuencia","D1-D3-D7-D14-D21"]},
+ {"id":"m1","lane":"pro","col":3,"type":"task","label":["Prospecto recibe email,","LinkedIn y llamada","(tono estándar C01)"]},
+ {"id":"g1","lane":"ven","col":4,"type":"gateway","label":["¿Responde?"]},
+ {"id":"t9","lane":"hub","col":5,"type":"task","label":["Archivar con motivo,","reciclar en 6 meses"]},
+ {"id":"m2","lane":"pro","col":5,"type":"task","label":["Reunión discovery","(agenda previa 24 h)"]},
+ {"id":"t5","lane":"ven","col":6,"type":"task","label":["Nota el mismo día +","calificar BANT-F"]},
+ {"id":"g2","lane":"ven","col":7,"type":"gateway","label":["¿BANT-F ≥ 4/5?"]},
+ {"id":"t6","lane":"hub","col":8,"type":"task","label":["3/5: nurturing MK","<3: descarte con motivo"]},
+ {"id":"e1","lane":"ven","col":8,"type":"end","label":["SQL: deal creado","→ CM.P03"]}
+],"flows":[
+ {"f":"s","t":"t1"},
+ {"f":"t1","t":"t2"},
+ {"f":"t2","t":"t3"},
+ {"f":"t3","t":"m1","dashed":true,"label":"5 toques"},
+ {"f":"m1","t":"g1","dashed":true,"label":"respuesta"},
+ {"f":"t3","t":"g1"},
+ {"f":"g1","t":"t9","label":"No (secuencia completa)"},
+ {"f":"g1","t":"m2","label":"Sí: agendar"},
+ {"f":"m2","t":"t5","dashed":true,"label":"minuta en 24 h (C03)"},
+ {"f":"t5","t":"g2"},
+ {"f":"g2","t":"e1","label":"Sí"},
+ {"f":"g2","t":"t6","label":"No"}
+],"caption":"CM.P02 — todo toque al prospecto usa las plantillas de comunicación estándar (C01-C03) para una experiencia homogénea desde el primer contacto."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>1</td><td>Vendedor</td><td>Tomar la siguiente cuenta tier 1 del ICP (<a href="pl-cm.html#e04">CM.P02.E01</a>) e investigar: trigger de compra, stack, 2–3 contactos (decisor, campeón, usuario)</td><td>LinkedIn SN + sitio del prospecto</td><td>Trigger identificado y escrito en 1 línea</td><td>Máx 15 min/cuenta</td></tr>
+<tr><td>2</td><td>Vendedor</td><td>Crear la empresa y los contactos en HubSpot ANTES del primer toque, con propiedad "línea de producto" y "trigger"</td><td>HubSpot → Contacts → Create</td><td>Cuenta visible en el dashboard de prospección</td><td>5 min</td></tr>
+<tr><td>3</td><td>Vendedor</td><td>Inscribir al contacto en la secuencia estándar de la línea: D1 email personalizado con el trigger en la primera línea (<a href="pl-cx.html#c01">plantilla C01</a>) · D3 LinkedIn · D7 llamada + voicemail · D14 email de valor con contenido MK · D21 email de cierre</td><td>HubSpot Sequences + <a href="pl-cm.html#e05">CM.P02.E02</a></td><td>Secuencia activa; cada toque queda registrado automático</td><td>21 días máx</td></tr>
+<tr><td>4</td><td>Vendedor</td><td>Si no hay respuesta al terminar la secuencia: archivar con motivo y programar reciclaje a 6 meses. Si hay respuesta: agendar discovery enviando confirmación con agenda 24 h antes (<a href="pl-cx.html#c02">C02</a>)</td><td>HubSpot Meetings</td><td>Reunión confirmada con agenda enviada, o cuenta archivada</td><td>&lt; 24 h desde la respuesta</td></tr>
+<tr><td>5</td><td>Vendedor</td><td>Ejecutar discovery con guion del <a href="cm-p05.html">playbook</a>: situación, dolor, impacto, proceso de decisión, siguiente paso con fecha</td><td>Guion de discovery</td><td>Los 5 temas cubiertos</td><td>30–45 min</td></tr>
+<tr><td>6</td><td>Vendedor</td><td>El mismo día: nota en HubSpot (<a href="pl-cm.html#e06">CM.P03.E01</a>) + minuta al prospecto (<a href="pl-cx.html#c03">C03</a>) + task del next step con fecha</td><td>HubSpot Notes/Tasks</td><td>Nota + minuta + task creadas</td><td>Mismo día</td></tr>
+<tr><td>7</td><td>Vendedor</td><td>Calificar BANT-F: Budget, Authority, Need, Timing, Fit. ≥ 4/5 → crear deal en stage "Calificado" con monto, línea y fecha. 3/5 → nurturing de Marketing. &lt; 3 → descartar con motivo</td><td>HubSpot Deals</td><td>Deal SQL creado o disposición registrada</td><td>&lt; 48 h post-reunión</td></tr>
+<tr><td>8</td><td>Vendedor</td><td>Si el deal requiere validación técnica (criterios en <a href="dl-p01.html">DL.P01</a>): levantar solicitud de preventa (<a href="pl-cm.html#e09">DL.P01.E01</a>)</td><td>Handoff <a href="handoffs.html">H05</a></td><td>Solicitud completa aceptada por preventa</td><td>Al calificar</td></tr>
+</table>
+
+<div class="touch"><b class="tag">Touchpoints con el prospecto (experiencia homogénea)</b>
+Desde el primer email el prospecto vive el estándar Conecta: mensajes personalizados con su trigger (nunca plantillas genéricas frías — <a href="pl-cx.html#c01">C01</a>), confirmación con agenda 24 h antes (<a href="pl-cx.html#c02">C02</a>), minuta con acuerdos en 24 h después (<a href="pl-cx.html#c03">C03</a>) y cierre digno de secuencia si no hay interés — nunca ghosting. SLAs de respuesta en el <a href="experiencia.html">Estándar de Experiencia</a>. <span class="wip">WIP: máx 15 cuentas en secuencia activa por vendedor</span></div>
+
+<h2>Entregables</h2>
+<table>
+<tr><th>Código</th><th>Entregable</th><th>Plantilla</th></tr>
+<tr><td><code><a href="pl-cm.html#e04">CM.P02.E01</a></code></td><td>Ficha ICP por línea de producto</td><td><a class="tpl-link" href="pl-cm.html#e04">abrir</a></td></tr>
+<tr><td><code><a href="pl-cm.html#e05">CM.P02.E02</a></code></td><td>Secuencia de contacto estándar (cadencia + mensajes)</td><td><a class="tpl-link" href="pl-cm.html#e05">abrir</a></td></tr>
+<tr><td><code><a href="pl-cm.html#e06">CM.P03.E01</a></code></td><td>Nota de reunión CRM (formato mínimo)</td><td><a class="tpl-link" href="pl-cm.html#e06">abrir</a></td></tr>
+</table>
+
+<h2>Handoffs</h2>
+<table>
+<tr><th>#</th><th>Entrega</th><th>Recibe</th><th>Qué</th><th>Cuándo</th><th>Criterio de calidad</th></tr>
+<tr><td>H02</td><td>Marketing</td><td>Comercial</td><td>Leads inbound calificados (MQL) + contenido para secuencias</td><td>Continuo</td><td>MQL con empresa, cargo, trigger y fuente; contacto en &lt; 24 h</td></tr>
+<tr><td>H05</td><td>Comercial</td><td>Preventa</td><td>Solicitud de preventa con contexto del deal</td><td>Al calificar deal técnico</td><td>Solicitud completa: dolor, stack, fecha, decisor identificado</td></tr>
+<tr><td>H01</td><td>Comercial</td><td>Marketing</td><td>Feedback de campo: objeciones nuevas, mensajes que funcionan, competitive intel</td><td>Quincenal</td><td>Mínimo 3 datos accionables por línea activa</td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Reuniones nuevas agendadas / semana / vendedor</td><td>≥ 3</td><td>HubSpot meetings</td></tr>
+<tr><td>Tasa secuencia → reunión</td><td>≥ 10% de cuentas contactadas</td><td>HubSpot sequences</td></tr>
+<tr><td>Tasa reunión → SQL</td><td>≥ 40%</td><td>HubSpot deals</td></tr>
+<tr><td>Tiempo promedio de calificación (1er toque → SQL)</td><td>≤ 21 días</td><td>HubSpot</td></tr>
+<tr><td>Cuentas ICP con secuencia activa</td><td>100% del tier 1</td><td>HubSpot</td></tr>
+</table>
+
+<div class="callout rule"><b class="tag">Regla de oro</b>Prospectar es una cita con el pipeline, no el tiempo que sobra. Los bloques de prospección son sagrados: se agendan en calendario y se reportan en el pipeline review semanal.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso CM.P02</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

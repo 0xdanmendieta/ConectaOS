@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DL.P02 Handoff Ventas → Delivery · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="delivery.html">Delivery</a> › DL.P02</div>
+<h1><span class="pcode">DL.P02</span>Handoff Ventas → Delivery</h1>
+<p class="lead">El momento más frágil de la relación con el cliente: entre la firma y el arranque. Este proceso garantiza que Delivery reciba TODO lo que se prometió, y que el cliente sienta continuidad, no un reinicio.</p>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>DL.P02</code></td></tr>
+<tr><th>Owner</th><td>Head of Delivery · Corresponsable: vendedor del deal</td></tr>
+<tr><th>Trigger</th><td>Deal marcado Closed-Won en HubSpot (dispara workflow automático)</td></tr>
+<tr><th>Inputs</th><td>Contrato firmado, scope técnico validado por preventa (<a href="dl-p01.html">DL.P01</a>), expectativas del cliente, contactos clave</td></tr>
+<tr><th>Outputs</th><td>Acta de handoff aceptada, kickoff interno realizado, kickoff con cliente realizado, proyecto activo en <a href="dl-p03.html">DL.P03</a></td></tr>
+<tr><th>SLA</th><td>Kickoff interno ≤ 5 días · kickoff con cliente ≤ 10 días desde la firma</td></tr>
+<tr><th>Herramientas</th><td>HubSpot (deal + tickets), acta <a href="pl-dl.html#e01">DL.P02.E01</a></td></tr>
+<tr><th>Métrica de éxito</th><td>Tiempo de handoff · satisfacción del cliente en semana 1 · % de handoffs sin re-trabajo</td></tr>
+</table>
+
+<h2>Diagrama BPMN</h2>
+<div class="diagram" id="bp-dlp01"></div>
+<script type="application/bpmn+json" data-target="bp-dlp01">
+{"lanes":[
+ {"id":"cli","label":"Cliente","color":"yellow","interaction":true},
+ {"id":"ven","label":"Vendedor","color":"orange"},
+ {"id":"dl","label":"Delivery","color":"teal"}
+],"nodes":[
+ {"id":"s","lane":"ven","col":0,"type":"start","label":["Deal closed-won","(día 0)"]},
+ {"id":"t1","lane":"ven","col":1,"type":"task","label":["Completar acta de","handoff DL.P02.E01"]},
+ {"id":"g1","lane":"dl","col":2,"type":"gateway","label":["¿Acta completa?","(revisión en 24 h)"]},
+ {"id":"t2","lane":"dl","col":3,"type":"task","label":["Kickoff interno ≤ 5 días:","historia del deal +","plan preliminar"]},
+ {"id":"t3","lane":"dl","col":4,"type":"task","label":["Kickoff con cliente","≤ 10 días, agenda","estándar (C06)"]},
+ {"id":"m1","lane":"cli","col":4,"type":"task","label":["Cliente confirma alcance,","criterios de éxito","y timeline"]},
+ {"id":"t4","lane":"dl","col":5,"type":"task","label":["Minuta en 24 h (C03)","+ encuesta semana 1"]},
+ {"id":"m2","lane":"cli","col":5,"type":"task","label":["Cliente califica","su semana 1 (≥8/10)"]},
+ {"id":"e1","lane":"dl","col":6,"type":"end","label":["Proyecto activo","→ DL.P03 (H06)"]}
+],"flows":[
+ {"f":"s","t":"t1"},
+ {"f":"t1","t":"g1"},
+ {"f":"g1","t":"t1","label":"Rechazo con faltantes (48 h)","loop":true},
+ {"f":"g1","t":"t2","label":"Aceptada"},
+ {"f":"t2","t":"t3"},
+ {"f":"t3","t":"m1","dashed":true,"label":"kickoff"},
+ {"f":"t3","t":"t4"},
+ {"f":"t4","t":"m2","dashed":true,"label":"encuesta"},
+ {"f":"t4","t":"e1"}
+],"caption":"DL.P02 — el cliente compró una promesa; este proceso garantiza que Delivery reciba exactamente esa promesa y el cliente sienta continuidad, no un reinicio."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>1</td><td>Vendedor</td><td>Enviar al cliente la bienvenida post-firma (<a href="pl-cx.html#c06">C06</a>): qué sigue, quién lo contactará y cuándo. El cliente NUNCA queda en silencio después de firmar</td><td><a href="pl-cx.html#c06">C06</a></td><td>Bienvenida enviada</td><td>Día 0–1</td></tr>
+<tr><td>2</td><td>Vendedor</td><td>Completar el acta de handoff: contrato y anexos, scope validado por preventa (sin ediciones), expectativas explícitas E implícitas ("qué prometimos de palabra"), contactos con actitud (aliado/escéptico), riesgos</td><td><a href="pl-dl.html#e01">DL.P02.E01</a></td><td>Checklist al 100%</td><td>Días 1–3</td></tr>
+<tr><td>3</td><td><a href="posiciones.html#hod">Head of Delivery</a></td><td>Revisar el acta en 24 h: aceptar o rechazar con lista de faltantes (el vendedor corrige en 48 h; el reloj del SLA sigue corriendo)</td><td>Registro en el acta</td><td>Acta aceptada</td><td>24 h</td></tr>
+<tr><td>4</td><td>Vendedor + preventa + delivery + implementación</td><td>Kickoff interno (45 min): recorrido del acta, el vendedor cuenta la historia del deal (por qué compró, qué teme, quién es aliado), asignar PM respetando su <a href="capacidad.html">WIP máx de 4 proyectos</a>, plan preliminar y riesgos</td><td>Minuta interna</td><td>PM asignado con capacidad real</td><td>≤ 5 días de la firma</td></tr>
+<tr><td>5</td><td>Head of Delivery + PM (asiste el vendedor)</td><td>Kickoff con cliente con agenda estándar: presentación del equipo, confirmación de alcance y criterios de éxito, timeline con hitos, modelo de comunicación (frecuencia, canal, escalación), próximos pasos. Agenda enviada 24 h antes (<a href="pl-cx.html#c02">C02</a>)</td><td>Agenda estándar del kickoff</td><td>Cliente confirma alcance y criterios</td><td>≤ 10 días de la firma</td></tr>
+<tr><td>6</td><td>PM</td><td>Enviar minuta al cliente en 24 h (<a href="pl-cx.html#c03">C03</a>) y programar el reporte semanal estándar (<a href="pl-cx.html#c07">C07</a>)</td><td>Minuta + calendario</td><td>Cadencia de comunicación activa</td><td>24 h post-kickoff</td></tr>
+<tr><td>7</td><td>Delivery</td><td>Enviar encuesta corta de satisfacción al final de la semana 1; si &lt; 8/10, el Head of Delivery llama al cliente ese mismo día</td><td>Encuesta semana 1</td><td>Score registrado; recuperación si aplica</td><td>Día 7–10</td></tr>
+<tr><td>8</td><td>PM</td><td>Abrir el proyecto en <a href="dl-p03.html">DL.P03</a> con el acta como documento fundacional; el vendedor queda como sponsor comercial (upsell futuro vía H04)</td><td>HubSpot proyecto</td><td>Proyecto activo</td><td>Post-kickoff</td></tr>
+</table>
+
+<div class="touch"><b class="tag">Touchpoints con el cliente (experiencia homogénea)</b>
+Entre la firma y el kickoff está el momento más frágil de la relación. El estándar: bienvenida en 24 h (<a href="pl-cx.html#c06">C06</a>), kickoff en ≤ 10 días con agenda previa (<a href="pl-cx.html#c02">C02</a>), minuta en 24 h (<a href="pl-cx.html#c03">C03</a>) y el cliente <b>nunca repite información que ya dio a ventas</b> — esa es la prueba de que el handoff funcionó.</div>
+
+<h2>Handoffs</h2>
+<table>
+<tr><th>#</th><th>Entrega</th><th>Recibe</th><th>Qué</th><th>Cuándo</th><th>Criterio de calidad</th></tr>
+<tr><td>H03</td><td>Comercial</td><td>Delivery</td><td>Acta de handoff completa</td><td>≤ 3 días post-firma</td><td>Checklist <a href="pl-dl.html#e01">DL.P02.E01</a> al 100%; scope = lo validado por preventa</td></tr>
+<tr><td>H06</td><td>Delivery (kickoff)</td><td>Implementación (<a href="dl-p03.html">DL.P03</a>)</td><td>Proyecto listo para implementar</td><td>Post kickoff cliente</td><td>Plan con hitos; contactos técnicos confirmados</td></tr>
+<tr><td>H08</td><td>Delivery</td><td>Finanzas</td><td>Confirmación de hito facturable</td><td>Según contrato</td><td>Evidencia de aceptación del cliente</td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Firma → kickoff con cliente</td><td>≤ 10 días hábiles</td><td>HubSpot + acta</td></tr>
+<tr><td>Actas aceptadas a la primera</td><td>&gt; 80%</td><td>Registro <a href="pl-dl.html#e01">DL.P02.E01</a></td></tr>
+<tr><td>Satisfacción del cliente semana 1</td><td>≥ 8/10</td><td>Encuesta</td></tr>
+<tr><td>Sorpresas de scope post-firma</td><td>0</td><td>Retro de kickoff</td></tr>
+</table>
+
+<div class="callout rule"><b class="tag">Regla de oro</b>El cliente compró una promesa hecha por ventas. El handoff existe para que Delivery entregue exactamente esa promesa — ni una distinta, ni una recortada.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso DL.P02</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

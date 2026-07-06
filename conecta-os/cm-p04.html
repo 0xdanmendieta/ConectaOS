@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CM.P04 Renovaciones · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="comercial.html">Comercial</a> › CM.P04</div>
+<h1><span class="pcode">CM.P04</span>Renovaciones</h1>
+<p class="lead">Protege el revenue recurrente ($46M de los $53M de la meta 2026 son recurrentes) y convierte cada renovación en una oportunidad de upsell. Aplica sobre todo a Thales, y progresivamente a Tesseract y Hermes.</p>
+
+<div class="callout risk"><b class="tag">La lección PROSA</b>PROSA compró con otro partner y Conecta se enteró tarde. Con este proceso, una cuenta cotizando con la competencia se detecta en la revisión de cuenta a T-90, no después de perderla.</div>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>CM.P04</code></td></tr>
+<tr><th>Owner</th><td>Vendedor de renovaciones (línea Thales) · supervisa Head of Sales</td></tr>
+<tr><th>Trigger</th><td><b>T-90:</b> workflow de HubSpot crea el deal de renovación 90 días antes del vencimiento del contrato/soporte</td></tr>
+<tr><th>Inputs</th><td>Contrato vigente, historial de tickets (<a href="dl-p04.html">DL.P04</a>), customer health score, pricing del fabricante, oportunidades de upsell detectadas por Delivery</td></tr>
+<tr><th>Outputs</th><td>Renovación firmada (idealmente con upsell), o plan de retención activado</td></tr>
+<tr><th>Frecuencia</th><td>Por contrato; revisión del libro de renovaciones en cada pipeline review</td></tr>
+<tr><th>Herramientas</th><td>HubSpot (pipeline de renovaciones separado, propiedades de fecha de vencimiento)</td></tr>
+<tr><th>Métrica de éxito</th><td>Tasa de renovación &gt; 90% · % de renovaciones con upsell · renovaciones cerradas antes del vencimiento</td></tr>
+</table>
+
+<h2>Diagrama BPMN</h2>
+<div class="diagram" id="bp-cmp04"></div>
+<script type="application/bpmn+json" data-target="bp-cmp04">
+{"lanes":[
+ {"id":"cli","label":"Cliente","color":"yellow","interaction":true},
+ {"id":"ven","label":"Vendedor Renovaciones","color":"orange"},
+ {"id":"dl","label":"Delivery (Soporte/CX)","color":"teal"},
+ {"id":"hub","label":"HubSpot (sistema)","color":"gray"}
+],"nodes":[
+ {"id":"s","lane":"hub","col":0,"type":"start","label":["T-90: workflow crea","deal de renovación"]},
+ {"id":"t1","lane":"dl","col":1,"type":"task","label":["Entregar health score","+ historial de tickets","(H04 / H06)"]},
+ {"id":"t2","lane":"ven","col":2,"type":"task","label":["Revisión de cuenta","CM.P04.E01 + detectar","upsell"]},
+ {"id":"g1","lane":"ven","col":3,"type":"gateway","label":["¿Riesgo de fuga?"]},
+ {"id":"t3","lane":"ven","col":4,"type":"task","label":["Plan de retención 48 h","+ escalar a HoS/CEO"]},
+ {"id":"t4","lane":"ven","col":5,"type":"task","label":["Pricing + propuesta","antes de T-60"]},
+ {"id":"m1","lane":"cli","col":5,"type":"task","label":["Cliente recibe propuesta","en reunión, anclada en","resultados del año"]},
+ {"id":"t5","lane":"ven","col":6,"type":"task","label":["Negociar con upsell","cerrar antes de T-30"]},
+ {"id":"g2","lane":"ven","col":7,"type":"gateway","label":["¿Renueva?"]},
+ {"id":"e1","lane":"hub","col":8,"type":"end","label":["Firmada → H08","a Finanzas"]},
+ {"id":"t6","lane":"dl","col":8,"type":"task","label":["Perdida: post-mortem","+ plan de reemplazo"]}
+],"flows":[
+ {"f":"s","t":"t1"},
+ {"f":"t1","t":"t2"},
+ {"f":"t2","t":"g1"},
+ {"f":"g1","t":"t3","label":"Sí"},
+ {"f":"t3","t":"t4"},
+ {"f":"g1","t":"t4","label":"No"},
+ {"f":"t4","t":"m1","dashed":true,"label":"reunión (C09)"},
+ {"f":"m1","t":"t5","dashed":true,"label":"respuesta"},
+ {"f":"t4","t":"t5"},
+ {"f":"t5","t":"g2"},
+ {"f":"g2","t":"e1","label":"Sí"},
+ {"f":"g2","t":"t6","label":"No"}
+],"caption":"CM.P04 — el reloj corre desde T-90; la propuesta sale antes de T-60 y se firma antes de T-30. Una propuesta tardía es una invitación a cotizar con otros."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>1</td><td>HubSpot (auto)</td><td>Workflow crea el deal de renovación 90 días antes del vencimiento y notifica al vendedor y a Delivery</td><td>Workflow T-90</td><td>Deal en pipeline de renovaciones</td><td>T-90</td></tr>
+<tr><td>2</td><td><a href="dl-p04.html">Delivery</a></td><td>Entregar health score actualizado (&lt;30 días) e historial de tickets/SLA del período (handoffs <a href="handoffs.html">H04/H06</a>)</td><td><a href="pl-dl.html#e06">DL.P04.E01</a></td><td>Insumos completos en el deal</td><td>T-90 a T-85</td></tr>
+<tr><td>3</td><td>Vendedor</td><td>Completar la revisión de cuenta: uso real, cambios en el cliente, señales de riesgo, oportunidades de upsell con evidencia</td><td><a href="pl-cm.html#e10">CM.P04.E01</a></td><td>Ficha completa + postura de pricing decidida</td><td>T-85 a T-75</td></tr>
+<tr><td>4</td><td>Vendedor (+HoS si riesgo)</td><td>Si hay riesgo de fuga: marcar deal "en riesgo", activar plan de retención en 48 h (reunión ejecutiva, análisis de gap, involucrar al fabricante)</td><td>HubSpot + acta</td><td>Plan activo con dueño y fecha</td><td>48 h desde la señal</td></tr>
+<tr><td>5</td><td>Vendedor</td><td>Preparar propuesta según matriz: sano+precio bajo → aumento; en riesgo → retención; estratégico → bundle con upsell. Aprobar descuentos según <a href="fi-p01.html">FI.P01</a></td><td>HubSpot Quotes</td><td>Propuesta aprobada internamente</td><td>Antes de T-60</td></tr>
+<tr><td>6</td><td>Vendedor</td><td>Presentar la propuesta EN REUNIÓN (no solo email), anclada en resultados del año: tickets resueltos, disponibilidad, roadmap. Aviso previo con <a href="pl-cx.html#c09">plantilla C09</a></td><td><a href="pl-cx.html#c09">C09</a> + <a href="pl-cx.html#c02">C02</a></td><td>Propuesta presentada y minuta enviada (<a href="pl-cx.html#c03">C03</a>)</td><td>T-60 a T-50</td></tr>
+<tr><td>7</td><td>Vendedor</td><td>Negociar incluyendo el upsell detectado en el paso 3 (meta: ≥1 upsell/mes en el libro). Cerrar y firmar</td><td>HubSpot</td><td>Renovación firmada</td><td>Antes de T-30</td></tr>
+<tr><td>8</td><td>Vendedor</td><td>Firmada → verificar condiciones en HubSpot para facturación (H08). Perdida → post-mortem obligatorio y plan de recuperación/reemplazo en el forecast</td><td><a href="pl-dl.html#e02">CM.P05.E02</a></td><td>Revenue asegurado o reemplazo planeado</td><td>Al cierre</td></tr>
+</table>
+
+<div class="touch"><b class="tag">Touchpoints con el cliente (experiencia homogénea)</b>
+El cliente de renovación recibe: contacto proactivo a T-90 — nunca una factura sorpresa (<a href="pl-cx.html#c09">C09</a>), una revisión anual de valor con datos de su propia operación, propuesta presentada en persona y decisión sin presión de último minuto porque el proceso empezó 3 meses antes. Estándar completo en <a href="experiencia.html">Experiencia</a>. <span class="wip">WIP: máx 8 renovaciones simultáneas en ventana activa por vendedor</span></div>
+
+<h2>Entregables</h2>
+<table>
+<tr><th>Código</th><th>Entregable</th><th>Plantilla</th></tr>
+<tr><td><code><a href="pl-cm.html#e10">CM.P04.E01</a></code></td><td>Ficha de Revisión de Cuenta (pre-renovación)</td><td><a class="tpl-link" href="pl-cm.html#e10">abrir</a></td></tr>
+<tr><td><code><a href="pl-dl.html#e02">CM.P05.E02</a></code></td><td>Post-mortem (renovación perdida)</td><td><a class="tpl-link" href="pl-dl.html#e02">abrir</a></td></tr>
+</table>
+
+<h2>Handoffs</h2>
+<table>
+<tr><th>#</th><th>Entrega</th><th>Recibe</th><th>Qué</th><th>Cuándo</th><th>Criterio de calidad</th></tr>
+<tr><td>H04</td><td>Delivery/CX</td><td>Comercial</td><td>Health score + oportunidades de upsell de la cuenta</td><td>T-90 (al abrirse el deal)</td><td>Score actualizado &lt; 30 días; upsells con evidencia de necesidad</td></tr>
+<tr><td>H06</td><td>Delivery (Soporte)</td><td>Comercial</td><td>Historial de tickets y cumplimiento de SLA</td><td>T-90</td><td>Reporte completo del período del contrato</td></tr>
+<tr><td>H08</td><td>Comercial</td><td>Finanzas</td><td>Renovación firmada para facturación</td><td>Al cierre</td><td>Condiciones de pago y vigencia correctas en HubSpot</td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Tasa de renovación (por monto)</td><td>&gt; 90%</td><td>HubSpot renewals</td></tr>
+<tr><td>% de renovaciones con upsell</td><td>≥ 30% (≥ 1/mes en el libro Thales)</td><td>HubSpot</td></tr>
+<tr><td>Renovaciones firmadas antes de T-30</td><td>100%</td><td>HubSpot</td></tr>
+<tr><td>Cuentas en riesgo con plan de retención activo</td><td>100% en &lt; 48 h</td><td>HubSpot + acta</td></tr>
+<tr><td>NRR (Net Revenue Retention)</td><td>&gt; 100%</td><td>Expansión − churn (<a href="fi-p01.html">FI.P01</a>)</td></tr>
+</table>
+
+<div class="callout rule"><b class="tag">Regla de oro</b>Una renovación no es un trámite administrativo: es un deal que la competencia quiere robarte. Se trabaja con la misma disciplina de pipeline que un deal nuevo.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso CM.P04</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

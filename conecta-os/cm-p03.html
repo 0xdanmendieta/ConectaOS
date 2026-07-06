@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CM.P03 Gestión de Pipeline · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="comercial.html">Comercial</a> › CM.P03</div>
+<h1><span class="pcode">CM.P03</span>Gestión de Pipeline (Deal Management)</h1>
+<p class="lead">Convierte el pipeline en un activo de la organización, no en la memoria personal de cada vendedor. Stages con criterios de salida, review semanal obligatorio, forecast mensual y alertas tempranas.</p>
+
+<div class="callout risk"><b class="tag">Por qué existe este proceso</b>Los deals más grandes de Conecta (Fincomun $160K, Kapital, Acreimex $567K) han vivido sin una sola nota en el CRM: invisibles para forecast, soporte y continuidad. Este proceso hace imposible ese escenario.</div>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>CM.P03</code></td></tr>
+<tr><th>Owner</th><td>Head of Sales / CRO</td></tr>
+<tr><th>Trigger</th><td>Deal creado en stage "Calificado" (salida de <a href="cm-p02.html">CM.P02</a> o <a href="cm-p04.html">CM.P04</a>)</td></tr>
+<tr><th>Inputs</th><td>Deals en HubSpot con monto, línea, fecha de cierre y nota de calificación</td></tr>
+<tr><th>Outputs</th><td>Deals closed-won con handoff a Delivery · forecast mensual · acta de pipeline review semanal</td></tr>
+<tr><th>Frecuencia</th><td>Review semanal (lunes 9:00) · forecast mensual (día hábil 1)</td></tr>
+<tr><th>Herramientas</th><td>HubSpot (pipeline, forecast, dashboards, workflows de alerta)</td></tr>
+<tr><th>Métrica de éxito</th><td>Win rate &gt; 25% · pipeline coverage ≥ 3x · 0 deals sin actividad &gt; 7 días · precisión de forecast ± 15%</td></tr>
+</table>
+
+<h2>Stages del pipeline y criterios de salida</h2>
+<p>Un deal solo avanza cuando cumple el criterio de salida. "Se siente cerca" no es un criterio.</p>
+<table>
+<tr><th>Stage</th><th>Probabilidad</th><th>Criterio de salida (para avanzar)</th></tr>
+<tr><td><b>1. Calificado (SQL)</b></td><td>10%</td><td>BANT-F ≥ 4/5 documentado; monto y fecha estimada en HubSpot</td></tr>
+<tr><td><b>2. Descubrimiento</b></td><td>20%</td><td>Dolor cuantificado; mapa de decisión (quién firma, quién influye); preventa activada si aplica</td></tr>
+<tr><td><b>3. Validación técnica</b></td><td>40%</td><td>Demo/PoC completada con criterios de éxito firmados por el cliente (<a href="pl-cm.html#e09">DL.P01.E01</a>)</td></tr>
+<tr><td><b>4. Propuesta</b></td><td>60%</td><td>Propuesta entregada y presentada (no solo enviada); pricing aprobado según matriz <a href="fi-p01.html">FI.P01</a>. <b>Si incluye hardware de fabricante:</b> cotización del fabricante integrada + triple Vo.Bo. por correo (líder técnico del <a href="delivery.html#fabricantes">equipo de fabricante</a> + CFO con FX validado + Dirección) — sin triple autorización la propuesta no sale, y sale el MISMO día que se autoriza</td></tr>
+<tr><td><b>5. Negociación</b></td><td>80%</td><td>Términos acordados verbalmente; contrato en revisión legal; fecha de firma comprometida. Seguimiento post-propuesta con reloj: 24 h primer follow-up, 72 h sin respuesta escala a Dirección</td></tr>
+<tr><td><b>6. Closed-Won</b></td><td>100%</td><td>Contrato firmado → dispara handoff H03 a Delivery (≤ 5 días para kickoff interno)</td></tr>
+<tr><td><b>Closed-Lost</b></td><td>0%</td><td>Motivo obligatorio + post-mortem si monto &gt; $250K MXN (<a href="pl-dl.html#e02">CM.P05.E02</a>)</td></tr>
+</table>
+
+<h2>Diagrama BPMN</h2>
+<div class="diagram" id="bp-cmp03"></div>
+<script type="application/bpmn+json" data-target="bp-cmp03">
+{"lanes":[
+ {"id":"cli","label":"Cliente","color":"yellow","interaction":true},
+ {"id":"ven","label":"Vendedor","color":"orange"},
+ {"id":"hos","label":"Head of Sales","color":"teal"},
+ {"id":"hub","label":"HubSpot (sistema)","color":"gray"}
+],"nodes":[
+ {"id":"s","lane":"ven","col":0,"type":"start","label":["Deal SQL creado","(de CM.P02 / CM.P04)"]},
+ {"id":"t1","lane":"ven","col":1,"type":"task","label":["Higiene diaria: nota","mismo día + task futura"]},
+ {"id":"w1","lane":"hub","col":1,"type":"task","label":["Workflows: alerta 7 días","sin actividad / estancado"]},
+ {"id":"t2","lane":"hos","col":2,"type":"task","label":["Pipeline review","lunes 9:00 - acta","CM.P03.E02"]},
+ {"id":"g1","lane":"ven","col":3,"type":"gateway","label":["¿Cumple criterio","de salida del stage?"]},
+ {"id":"t3","lane":"ven","col":4,"type":"task","label":["Avanzar stage","con evidencia"]},
+ {"id":"m1","lane":"cli","col":4,"type":"task","label":["Cliente recibe propuesta","y negocia (C04)"]},
+ {"id":"g2","lane":"hos","col":5,"type":"gateway","label":["¿Won / Lost?"]},
+ {"id":"t4","lane":"hub","col":6,"type":"task","label":["Lost: motivo obligatorio","post-mortem si > $250K"]},
+ {"id":"e1","lane":"ven","col":6,"type":"end","label":["Won: acta de handoff","→ DL.P02 (H03)"]},
+ {"id":"f1","lane":"hos","col":0,"type":"task","label":["Forecast mensual","commit / best case","CM.P03.E03"]}
+],"flows":[
+ {"f":"s","t":"t1"},
+ {"f":"w1","t":"t1","dashed":true,"label":"early warnings"},
+ {"f":"t1","t":"t2"},
+ {"f":"f1","t":"t2","dashed":true,"label":"alimenta"},
+ {"f":"t2","t":"g1"},
+ {"f":"g1","t":"t1","label":"No: next step con fecha","loop":true},
+ {"f":"g1","t":"t3","label":"Sí"},
+ {"f":"t3","t":"m1","dashed":true,"label":"propuesta presentada"},
+ {"f":"t3","t":"g2"},
+ {"f":"g2","t":"e1","label":"Won"},
+ {"f":"g2","t":"t4","label":"Lost"}
+],"caption":"CM.P03 — el pipeline avanza solo con evidencia de criterio de salida; el review semanal y las alertas automáticas mantienen el sistema honesto."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>1</td><td>Vendedor</td><td>Después de CADA interacción con el cliente: nota de 3 bullets (qué pasó, qué se acordó, next step con dueño y fecha) y task futura. Deal sin task futura = deal huérfano</td><td><a href="pl-cm.html#e06">CM.P03.E01</a> en HubSpot</td><td>Nota + task el mismo día</td><td>≤ 10 min por reunión</td></tr>
+<tr><td>2</td><td>Vendedor</td><td>Mantener el deal al día: monto, fecha de cierre estimada y stage correcto según la tabla de criterios de salida (arriba)</td><td>HubSpot Deals</td><td>0 campos vacíos, 0 fechas vencidas</td><td>Continuo</td></tr>
+<tr><td>3</td><td>Todos + <a href="posiciones.html#hos">HoS</a></td><td>Pipeline review cada lunes 9:00 (60 min, agenda fija): 1) cierres del mes, 2) cambios de stage con evidencia, 3) early warnings, 4) deals nuevos, 5) bloqueos a escalar. Cada quien presenta desde HubSpot en vivo</td><td><a href="pl-cm.html#e07">CM.P03.E02</a></td><td>Acta con decisiones y next steps publicada en HubSpot</td><td>Lunes 9:00–10:00</td></tr>
+<tr><td>4</td><td>Vendedor del deal</td><td>Atender cada early warning en 48 h con una de tres decisiones: reactivar (next step real con el cliente), reprogramar (nueva fecha justificada) o matar (closed-lost con motivo)</td><td>Workflows HubSpot</td><td>0 deals sin actividad &gt; 7 días</td><td>48 h por alerta</td></tr>
+<tr><td>5</td><td>Vendedor</td><td>Avanzar el stage SOLO cuando el criterio de salida se cumple con evidencia (demo completada, propuesta presentada — no "se siente cerca")</td><td>HubSpot + tabla de stages</td><td>Evidencia en la nota del cambio</td><td>Al ocurrir</td></tr>
+<tr><td>6</td><td>Head of Sales</td><td>Primer día hábil del mes: forecast con Commit (≥80% + fecha comprometida), Best case y Ponderado; comparar coverage vs 3x y disparar plan de generación si falta</td><td><a href="pl-cm.html#e08">CM.P03.E03</a> → H08 a <a href="fi-p01.html">Finanzas</a></td><td>Forecast entregado a CEO/CFO; precisión ±15% vs mes anterior</td><td>Día hábil 1</td></tr>
+<tr><td>7a</td><td>Vendedor</td><td><b>Won:</b> completar acta de handoff (<a href="pl-dl.html#e01">DL.P02.E01</a>) y agendar kickoff interno en ≤ 5 días (handoff <a href="handoffs.html">H03</a>)</td><td><a href="dl-p02.html">DL.P02</a></td><td>Acta aceptada por Delivery</td><td>≤ 3 días post-firma</td></tr>
+<tr><td>7b</td><td>Vendedor</td><td><b>Lost:</b> registrar motivo (precio/producto/timing/competencia/no decisión); si &gt; $250K, post-mortem la semana siguiente. Enviar mensaje de cierre digno al cliente (<a href="pl-cx.html#c05">C05 — perder bien</a>)</td><td><a href="pl-dl.html#e02">CM.P05.E02</a></td><td>Motivo + post-mortem + cliente cerrado con puerta abierta</td><td>Semana siguiente</td></tr>
+</table>
+
+<div class="touch"><b class="tag">Touchpoints con el cliente (experiencia homogénea)</b>
+El cliente nunca percibe el pipeline interno — percibe consistencia: propuestas presentadas en reunión con la plantilla estándar (<a href="pl-cx.html#c04">C04</a>), seguimiento sin silencios &gt; 5 días hábiles y, si no compra, un cierre profesional que deja la puerta abierta (<a href="pl-cx.html#c05">C05</a>). Un deal perdido con buena experiencia es pipeline futuro. <span class="wip">WIP: máx 25 deals abiertos por vendedor</span></div>
+
+<h2>Entregables</h2>
+<table>
+<tr><th>Código</th><th>Entregable</th><th>Frecuencia</th><th>Plantilla</th></tr>
+<tr><td><code><a href="pl-cm.html#e06">CM.P03.E01</a></code></td><td>Nota de reunión CRM (formato mínimo)</td><td>Cada reunión</td><td><a class="tpl-link" href="pl-cm.html#e06">abrir</a></td></tr>
+<tr><td><code><a href="pl-cm.html#e07">CM.P03.E02</a></code></td><td>Acta de Pipeline Review semanal</td><td>Semanal</td><td><a class="tpl-link" href="pl-cm.html#e07">abrir</a></td></tr>
+<tr><td><code><a href="pl-cm.html#e08">CM.P03.E03</a></code></td><td>Forecast mensual (commit / best case / ponderado)</td><td>Mensual</td><td><a class="tpl-link" href="pl-cm.html#e08">abrir</a></td></tr>
+</table>
+
+<h2>Handoffs</h2>
+<table>
+<tr><th>#</th><th>Entrega</th><th>Recibe</th><th>Qué</th><th>Cuándo</th><th>Criterio de calidad</th></tr>
+<tr><td>H03</td><td>Comercial</td><td>Delivery</td><td>Deal ganado: contrato, scope, expectativas, contactos</td><td>≤ 5 días post-firma</td><td>Acta <a href="pl-dl.html#e01">DL.P02.E01</a> completa; kickoff interno agendado</td></tr>
+<tr><td>H08</td><td>Comercial</td><td>Finanzas</td><td>Forecast mensual + deals won para facturación</td><td>Día hábil 1 / al cierre</td><td>Montos y condiciones de pago verificados contra contrato</td></tr>
+<tr><td>H01</td><td>Comercial</td><td>Marketing</td><td>Motivos de pérdida y competitive intel del review</td><td>Mensual</td><td>Tabla de lost reasons por línea</td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Pipeline coverage (ponderado vs meta trimestral)</td><td>≥ 3x</td><td>HubSpot dashboard</td></tr>
+<tr><td>Win rate</td><td>&gt; 25%</td><td>HubSpot</td></tr>
+<tr><td>Sales cycle por línea</td><td>Baseline Q3 → reducir 15% en Q4</td><td>HubSpot</td></tr>
+<tr><td>Deals sin actividad &gt; 7 días</td><td>0</td><td>Workflow HubSpot</td></tr>
+<tr><td>Precisión de forecast (commit vs real)</td><td>± 15%</td><td><a href="pl-cm.html#e08">CM.P03.E03</a> histórico</td></tr>
+<tr><td>Reuniones con nota el mismo día</td><td>100%</td><td>HubSpot (auditoría semanal)</td></tr>
+</table>
+
+<div class="callout rule"><b class="tag">Regla de oro</b>El pipeline review no es un interrogatorio: es el mecanismo para que la organización pueda ayudar a cerrar. Un deal invisible es un deal al que nadie puede ayudar — y un forecast que nadie puede creer.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso CM.P03</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

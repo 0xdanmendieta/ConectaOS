@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Plan de Implementación · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › Plan de Implementación</div>
+<h1><span class="pcode">IMPLEMENTACIÓN</span>Plan de Implementación 2026</h1>
+<p class="lead">Cuatro fases secuenciadas para un equipo de ~30 personas. Revenue primero, soporte después. Arranca la semana del <b>6 de julio de 2026</b>. Ningún proceso pasa a la siguiente fase sin cumplir su criterio de éxito.</p>
+
+<div class="diagram">
+<svg viewBox="0 0 940 150" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,Arial" font-size="11.5">
+  <defs><marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#5b6b7d"/></marker></defs>
+  <rect x="15" y="35" width="200" height="70" rx="10" fill="#fff4ec" stroke="#ff7a29" stroke-width="2"/><text x="115" y="60" text-anchor="middle" font-weight="700" fill="#b34700">FASE 1 · Fundación</text><text x="115" y="78" text-anchor="middle" fill="#b34700">Julio · semanas 1–4</text><text x="115" y="94" text-anchor="middle" fill="#b34700">revenue inmediato</text>
+  <rect x="255" y="35" width="200" height="70" rx="10" fill="#e0edff" stroke="#1656c0" stroke-width="2"/><text x="355" y="60" text-anchor="middle" font-weight="700" fill="#0d3a8f">FASE 2 · Estandarización</text><text x="355" y="78" text-anchor="middle" fill="#0d3a8f">Agosto · semanas 5–8</text><text x="355" y="94" text-anchor="middle" fill="#0d3a8f">lo probado se vuelve norma</text>
+  <rect x="495" y="35" width="200" height="70" rx="10" fill="#dff5ef" stroke="#00b8a9" stroke-width="2"/><text x="595" y="60" text-anchor="middle" font-weight="700" fill="#0a6b52">FASE 3 · Escala</text><text x="595" y="78" text-anchor="middle" fill="#0a6b52">Sep–Oct · semanas 9–16</text><text x="595" y="94" text-anchor="middle" fill="#0a6b52">replicar lo que funciona</text>
+  <rect x="735" y="35" width="190" height="70" rx="10" fill="#eee7fb" stroke="#5b2eaa" stroke-width="2"/><text x="830" y="60" text-anchor="middle" font-weight="700" fill="#5b2eaa">FASE 4 · Optimización</text><text x="830" y="78" text-anchor="middle" fill="#5b2eaa">Nov–Dic</text><text x="830" y="94" text-anchor="middle" fill="#5b2eaa">cierre de año + plan 2027</text>
+  <line x1="215" y1="70" x2="253" y2="70" stroke="#5b6b7d" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="455" y1="70" x2="493" y2="70" stroke="#5b6b7d" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="695" y1="70" x2="733" y2="70" stroke="#5b6b7d" stroke-width="2" marker-end="url(#a)"/>
+</svg>
+</div>
+
+<h2>Fase 1 — Fundación (julio 2026, semanas 1–4)</h2>
+<table>
+<tr><th>Qué se implementa</th><th>Semana</th><th>Owner</th></tr>
+<tr><td><b><a href="cm-p03.html">CM.P03</a> Gestión de Pipeline:</b> stages con criterios en HubSpot, primer pipeline review el lunes de la semana 1, regla de nota-el-mismo-día, workflows de early warning</td><td>1</td><td>Head of Sales / CEO interino</td></tr>
+<tr><td><b>Visibilidad del pipeline estratégico:</b> los ~8 deals de alto ticket cargados con monto, stage y nota — apoyo de captura asignado si es necesario</td><td>1</td><td>Vendedor Estratégico</td></tr>
+<tr><td><b><a href="cm-p04.html">CM.P04</a> Renovaciones:</b> workflow T-90 activo, deals de renovación de los próximos 6 meses creados, ficha de revisión para los 3 vencimientos más próximos</td><td>2</td><td>Vendedor Renovaciones</td></tr>
+<tr><td><b><a href="cm-p01.html">CM.P01</a> para Hermes:</b> F1 checklist de entrada (con el material de value proposition en curso) + F2 certificación de vendedor estratégico y preventa</td><td>2–4</td><td>CEO + Preventa</td></tr>
+<tr><td><b><a href="pl-cm.html#e08">CM.P03.E03</a> primer forecast</b> + dashboard financiero semanal v1 (<a href="pl-fi.html#e01">FI.P01.E01</a>)</td><td>3–4</td><td>Head of Sales + CFO</td></tr>
+<tr><td><b>Campaña Hermes SPEI 2.0</b> (<a href="mk-p02.html">MK.P02</a>): brief, landing y secuencias listas para el anuncio de fines de julio</td><td>3–4</td><td>Marketing + Vendedor Estratégico</td></tr>
+</table>
+<table class="ficha">
+<tr><th>Herramientas</th><td>HubSpot: pipelines por línea, stages estándar, workflows (T-90, sin actividad 7 días), dashboard comercial, plantillas de nota</td></tr>
+<tr><th>Contrataciones</th><td>Decisión sobre Head of Sales/CRO (búsqueda inicia ya; CEO interino mientras tanto)</td></tr>
+<tr><th>Criterios de éxito (gate a Fase 2)</th><td>4 pipeline reviews consecutivos con acta · 100% de deals estratégicos visibles · 0 reuniones sin nota en semana 4 · forecast de agosto entregado · Hermes certificado y campaña lista</td></tr>
+<tr><th>Riesgos</th><td>Resistencia a la higiene de CRM (mitigación: regla "sin registro no comisiona" anunciada desde el día 1, vigente al firmar esquemas de comisión) · sobrecarga del CEO interino (mitigación: solo Fase 1, no adelantar procesos)</td></tr>
+</table>
+
+<h2>Fase 2 — Estandarización (agosto 2026, semanas 5–8)</h2>
+<table>
+<tr><th>Qué se implementa</th><th>Semana</th><th>Owner</th></tr>
+<tr><td><b><a href="cm-p02.html">CM.P02</a> Prospección formal:</b> ICPs documentados por línea, secuencias en HubSpot, bloques de prospección en calendario</td><td>5–6</td><td>Vendedores + Head of Sales</td></tr>
+<tr><td><b><a href="dl-p01.html">DL.P01</a> Preventa:</b> SLA 48 h, plantilla de solicitud, guiones de demo por línea</td><td>5–6</td><td>Preventa</td></tr>
+<tr><td><b><a href="cm-p01.html">CM.P01</a> F2 retroactivo:</b> certificación de todo el equipo en Thales y Tesseract (nadie exento)</td><td>6–7</td><td>Head of Sales</td></tr>
+<tr><td><b><a href="dl-p02.html">DL.P02</a> Handoff a Delivery</b> + acta obligatoria en cada closed-won</td><td>6–8</td><td>Head of Delivery</td></tr>
+<tr><td><b><a href="cm-p05.html">CM.P05</a> Playbook v1</b> de las 4 líneas + primer ciclo de post-mortems</td><td>7–8</td><td>Head of Sales</td></tr>
+<tr><td><b><a href="fi-p01.html">FI.P01</a>:</b> matriz de aprobación de cotizaciones activa + esquema de comisiones firmado</td><td>5–8</td><td>CFO</td></tr>
+<tr><td><b>GCP:</b> GO/NO-GO formal (<a href="cm-p01.html">CM.P01</a> F0)</td><td>8</td><td>CEO</td></tr>
+</table>
+<table class="ficha">
+<tr><th>Contrataciones</th><td>Head of Sales/CRO incorporado (ideal) · definición de Head of Marketing (contratación o agencia + owner interno)</td></tr>
+<tr><th>Criterios de éxito (gate a Fase 3)</th><td>≥ 3 reuniones nuevas/semana/vendedor sostenidas 3 semanas · 100% equipo certificado · playbook v1 publicado · matriz de cotizaciones sin bypass · primer deal Hermes en pipeline formal</td></tr>
+<tr><th>Riesgos</th><td>Certificación reprueba a alguien senior (mitigación: es re-capacitación, no castigo — pero el gate no se negocia) · preventa saturada (mitigación: criterios de activación estrictos de <a href="dl-p01.html">DL.P01</a>)</td></tr>
+</table>
+
+<h2>Fase 3 — Escala (septiembre–octubre 2026, semanas 9–16)</h2>
+<table>
+<tr><th>Qué se implementa</th><th>Semana</th><th>Owner</th></tr>
+<tr><td><b><a href="dl-p04.html">DL.P04</a> Soporte completo:</b> Service Hub, SLAs medidos, health score mensual del 100% de cuentas</td><td>9–12</td><td>Head of Delivery</td></tr>
+<tr><td><b><a href="dl-p03.html">DL.P03</a> Implementación:</b> runbooks por línea, gestión de cambios formal</td><td>9–12</td><td>Head of Delivery</td></tr>
+<tr><td><b><a href="mk-p01.html">MK.P01</a> completo:</b> Voice of Market recurrente, calendario editorial con gate de evidencia</td><td>9–12</td><td>Head of Marketing</td></tr>
+<tr><td><b><a href="op-p01.html">OP.P01</a>:</b> onboarding 30-60-90 y evaluaciones trimestrales (primera ronda con datos de Q3)</td><td>13–14</td><td>Head of Operations + Head of Sales</td></tr>
+<tr><td><b>Sprint Hermes:</b> máxima presión comercial antes del deadline Banxico (octubre) — pipeline de ≥ 5 instituciones, lighthouse en negociación</td><td>9–16</td><td>Vendedor Estratégico + CEO</td></tr>
+<tr><td><b>Comité de Dirección mensual</b> + revisión de gobierno del OS operando</td><td>9+</td><td>CEO</td></tr>
+</table>
+<table class="ficha">
+<tr><th>Contrataciones</th><td>SDR/apoyo comercial si coverage &lt; 3x con la plantilla actual · segundo ingeniero de preventa/implementación si Hermes despega</td></tr>
+<tr><th>Criterios de éxito (gate a Fase 4)</th><td>Coverage ≥ 3x sostenido · win rate medible con tendencia · SLA de soporte &gt; 95% · lighthouse Hermes cerrado o en negociación final · Q3 cerrado ≥ $8M MXN</td></tr>
+<tr><th>Riesgos</th><td>Deadline Banxico se aprovecha mal y STP captura el mercado (mitigación: sprint dedicado + campaña desde julio) · el OS se percibe como burocracia (mitigación: revisión de gobierno elimina pasos que no aportan)</td></tr>
+</table>
+
+<h2>Fase 4 — Optimización (noviembre–diciembre 2026)</h2>
+<table>
+<tr><th>Qué se hace</th><th>Owner</th></tr>
+<tr><td>Cierre de año: push de renovaciones de enero (T-90 = octubre), cierre de commits de Q4</td><td>Head of Sales</td></tr>
+<tr><td>Análisis del año: win rate, ciclos, CAC/LTV/NRR reales por línea; post-mortem del propio OS (qué proceso funcionó, cuál no)</td><td>CEO + CFO</td></tr>
+<tr><td>Conecta OS v3.0: ajustes con evidencia de 6 meses de operación</td><td>Comité de Dirección</td></tr>
+<tr><td>Plan y metas 2027: cuotas por línea (Hermes pasa de preventa a venta formal), plan de contrataciones, presupuesto</td><td>CEO + CFO</td></tr>
+<tr><td>Evaluaciones de desempeño del año + compensación 2027</td><td>RRHH + Heads</td></tr>
+</table>
+<table class="ficha">
+<tr><th>Criterios de éxito</th><td>Forecast 2027 construido bottom-up desde el pipeline · 100% de posiciones con evaluación anual · v2.0 del OS publicada · Hermes listo para venta formal 2027</td></tr>
+</table>
+
+<h2>Dependencias críticas</h2>
+<table>
+<tr><th>#</th><th>Dependencia</th><th>Bloquea a</th></tr>
+<tr><td>1</td><td>Disciplina de CRM instalada (F1)</td><td>Todo: forecast, early warnings, comisiones, evaluaciones — sin datos no hay sistema</td></tr>
+<tr><td>2</td><td>Checklist de entrada Hermes completo (F1, dueño: interlocutora de producto)</td><td>Certificación → campaña → preventa jul–dic</td></tr>
+<tr><td>3</td><td>Esquema de comisiones firmado (F2)</td><td>El refuerzo económico de todas las reglas de proceso</td></tr>
+<tr><td>4</td><td>Head of Sales contratado (F2)</td><td>Escala de la disciplina comercial; el CEO no puede ser interino en F3</td></tr>
+<tr><td>5</td><td>Service Hub operando (F3)</td><td>Health scores → renovaciones informadas → NRR</td></tr>
+</table>
+
+<div class="callout ok"><b class="tag">La próxima semana (6–10 julio)</b>Lunes: primer pipeline review con los deals que hoy existen (aunque el CRM esté imperfecto — se corrige en vivo). Martes: workflows de HubSpot (T-90, 7 días sin actividad). Miércoles: anuncio del OS al equipo + regla de nota-el-mismo-día. Jueves: arranque de checklist Hermes. Viernes: primer dashboard financiero. No se necesita nada más para empezar.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Plan de Implementación</footer>
+</main></div>
+<script src="nav.js"></script>
+</body></html>

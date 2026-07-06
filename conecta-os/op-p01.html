@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OP.P01 RRHH Comercial · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="operaciones.html">Operaciones</a> › OP.P01</div>
+<h1><span class="pcode">OP.P01</span>RRHH Comercial (área de Administración)</h1>
+<p class="lead">Contratar, activar y desarrollar al equipo comercial con método: perfiles definidos, onboarding 30-60-90 con metas verificables, capacitación continua y evaluación trimestral basada en los KPIs de <a href="posiciones.html">Gobierno</a>.</p>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>OP.P01</code></td></tr>
+<tr><th>Owner</th><td>Área de Administración (Dirección de Operaciones) · Cliente interno: Head of Sales</td></tr>
+<tr><th>Trigger</th><td>Vacante aprobada (plan de contrataciones del <a href="plan.html">Plan de Implementación</a>) · nuevo ingreso · ciclo trimestral de evaluación</td></tr>
+<tr><th>Inputs</th><td>Perfil de posición (<a href="posiciones.html">fichas GO</a>), presupuesto, plan 30-60-90, playbook <a href="cm-p05.html">CM.P05</a></td></tr>
+<tr><th>Outputs</th><td>Contrataciones cerradas, vendedores certificados y productivos, evaluaciones trimestrales documentadas</td></tr>
+<tr><th>Frecuencia</th><td>Por evento · evaluaciones trimestrales</td></tr>
+<tr><th>Herramientas</th><td>HubSpot (métricas de desempeño) + expediente RRHH</td></tr>
+<tr><th>Métrica de éxito</th><td>Time-to-hire · rampa a productividad ≤ 90 días · retención del equipo comercial</td></tr>
+</table>
+
+<h2>Diagrama BPMN</h2>
+<div class="diagram" id="bp-opp03"></div>
+<script type="application/bpmn+json" data-target="bp-opp03">
+{"lanes":[
+ {"id":"per","label":"Candidato / Empleado","color":"yellow","interaction":true},
+ {"id":"adm","label":"Administración (OP)","color":"purple"},
+ {"id":"hos","label":"Head of Sales","color":"orange"}
+],"nodes":[
+ {"id":"s","lane":"adm","col":0,"type":"start","label":["Vacante aprobada /","ingreso / trimestre"]},
+ {"id":"t1","lane":"adm","col":1,"type":"task","label":["Perfil desde la ficha","de posición (GO)"]},
+ {"id":"t2","lane":"adm","col":2,"type":"task","label":["Screening → entrevista","→ caso práctico →","referencias → oferta"]},
+ {"id":"m1","lane":"per","col":2,"type":"task","label":["Candidato vive un proceso","claro, con tiempos y","respuesta SIEMPRE"]},
+ {"id":"t3","lane":"adm","col":3,"type":"task","label":["Día 1: accesos, mentor,","Conecta OS completo"]},
+ {"id":"t4","lane":"hos","col":4,"type":"task","label":["30-60-90 con checkpoints","quincenales"]},
+ {"id":"m2","lane":"per","col":4,"type":"task","label":["Empleado sabe exactamente","qué se espera cada mes"]},
+ {"id":"g1","lane":"hos","col":5,"type":"gateway","label":["¿Hitos del","día 90?"]},
+ {"id":"t5","lane":"hos","col":6,"type":"task","label":["Plan de apoyo 30 días","o salida digna"]},
+ {"id":"e1","lane":"adm","col":7,"type":"end","label":["Confirmado + evaluación","trimestral por KPIs"]}
+],"flows":[
+ {"f":"s","t":"t1"},
+ {"f":"t1","t":"t2"},
+ {"f":"t2","t":"m1","dashed":true,"label":"proceso transparente"},
+ {"f":"t2","t":"t3"},
+ {"f":"t3","t":"t4"},
+ {"f":"t4","t":"m2","dashed":true,"label":"expectativas claras"},
+ {"f":"t4","t":"g1"},
+ {"f":"g1","t":"e1","label":"Sí"},
+ {"f":"g1","t":"t5","label":"No"},
+ {"f":"t5","t":"e1"}
+],"caption":"OP.P01 — human-centric también hacia adentro: el candidato y el empleado siempre saben en qué paso están y qué se espera de ellos."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>1</td><td>Administración</td><td>Tomar el perfil desde la <a href="posiciones.html">ficha de posición</a> (objetivos, KPIs, accountabilities, <a href="capacidad.html">capacidad</a>) — se contrata contra el trabajo real, no contra un CV genérico</td><td>Ficha GO</td><td>Perfil publicado</td><td>Semana 1</td></tr>
+<tr><td>2</td><td>Administración + <a href="posiciones.html#hos">HoS</a></td><td>Ejecutar el proceso: screening → entrevista HoS (venta consultiva, sector financiero) → caso práctico (simular discovery) → referencias → oferta. TODO candidato recibe respuesta, incluso los rechazados</td><td>Expediente RRHH</td><td>Oferta aceptada</td><td>≤ 45 días</td></tr>
+<tr><td>3</td><td>Administración</td><td>Día 1 listo ANTES del día 1: accesos HubSpot, equipo, mentor asignado, agenda de la primera semana con lectura de Conecta OS y del <a href="experiencia.html">Estándar de Experiencia</a></td><td><a href="pl-op.html#e01">OP.P01.E01</a></td><td>Día 1 sin fricción</td><td>Día 0</td></tr>
+<tr><td>4</td><td>HoS + mentor</td><td>Ejecutar el 30-60-90: mes 1 certificación (<a href="pl-cm.html#e02">CM.P01.E02</a>), mes 2 pipeline propio supervisado, mes 3 pipeline ≥ 3x cuota o primer deal. Checkpoint quincenal — sin sorpresas al día 90</td><td><a href="pl-op.html#e01">OP.P01.E01</a></td><td>Hitos verificables cumplidos</td><td>90 días</td></tr>
+<tr><td>5</td><td>HoS</td><td>Decisión día 90: confirmado / plan de apoyo 30 días / no continúa (con salida digna y feedback honesto)</td><td>Registro en el plan</td><td>Decisión documentada</td><td>Día 90</td></tr>
+<tr><td>6</td><td>Administración + heads</td><td>Evaluación trimestral contra los KPIs de la ficha con datos de HubSpot — no percepciones. Salidas: desarrollo, ajuste de variable (<a href="fi-p01.html">FI.P01</a>) o plan de mejora con fechas</td><td>HubSpot + expediente</td><td>Evaluación firmada por ambos</td><td>Trimestral</td></tr>
+<tr><td>7</td><td>Administración</td><td>Operar el calendario de capacitación continua: productos (re-certificación semestral), industria financiera (CNBV/Banxico), metodología (<a href="cm-p05.html">CM.P05</a>)</td><td>Calendario trimestral</td><td>100% certificaciones vigentes</td><td>Continuo</td></tr>
+</table>
+
+<h2>Handoffs</h2>
+<table>
+<tr><th>#</th><th>Entrega</th><th>Recibe</th><th>Qué</th><th>Cuándo</th><th>Criterio de calidad</th></tr>
+<tr><td>H10</td><td>Administración</td><td>Comercial</td><td>Vendedor contratado con plan 30-60-90 activo</td><td>Día 1</td><td>Perfil validado, accesos listos, mentor asignado</td></tr>
+<tr><td>H10r</td><td>Comercial</td><td>Administración</td><td>KPIs y evidencia para evaluación trimestral</td><td>Fin de trimestre</td><td>Datos de HubSpot, no autoreporte</td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Time-to-hire posiciones comerciales</td><td>≤ 45 días</td><td>RRHH</td></tr>
+<tr><td>Nuevos vendedores productivos al día 90</td><td>100%</td><td>HubSpot + plan 30-60-90</td></tr>
+<tr><td>Certificación vigente del equipo</td><td>100%</td><td><a href="pl-cm.html#e02">CM.P01.E02</a></td></tr>
+<tr><td>Evaluaciones trimestrales a tiempo</td><td>100%</td><td>RRHH</td></tr>
+</table>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso OP.P01</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

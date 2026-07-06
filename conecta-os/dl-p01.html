@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DL.P01 Preventa Técnica · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="delivery.html">Delivery</a> › DL.P01</div>
+<h1><span class="pcode">DL.P01</span>Preventa Técnica</h1>
+<p class="lead">Los ingenieros de preventa son de Delivery y viven en los <a href="delivery.html#fabricantes">equipos por fabricante</a>: el técnico valida viabilidad, el vendedor (Comercial) cierra. Preventa entra en el momento correcto, con solicitud formal, ejecuta demos y PoCs con criterios de éxito firmados, y devuelve un veredicto de viabilidad que protege a Delivery de vender lo imposible.</p>
+
+<h2>Ficha del proceso</h2>
+<table class="ficha">
+<tr><th>Código</th><td><code>DL.P01</code></td></tr>
+<tr><th>Owner</th><td>Ingeniero de Preventa del <a href="delivery.html#fabricantes">equipo de fabricante</a> correspondiente (Delivery)</td></tr>
+<tr><th>Trigger</th><td>Solicitud de preventa (<code><a href="pl-cm.html#e09">DL.P01.E01</a></code>) levantada por el vendedor en un deal calificado</td></tr>
+<tr><th>Inputs</th><td>Deal en HubSpot con nota de calificación, dolor técnico del cliente, stack actual, ficha técnica del producto</td></tr>
+<tr><th>Outputs</th><td>Demo/PoC ejecutada · veredicto de viabilidad · insumos técnicos de la propuesta (arquitectura, alcance, esfuerzo)</td></tr>
+<tr><th>SLA</th><td>Respuesta a solicitud: 48 h · demo estándar: ≤ 10 días · PoC: plan acordado por escrito</td></tr>
+<tr><th>Herramientas</th><td>HubSpot (tasks/tickets de preventa), sandbox por línea, repositorio de arquitecturas</td></tr>
+<tr><th>Métrica de éxito</th><td>Tiempo de respuesta · tasa de conversión post-demo · % de deals entregables sin sorpresas de scope</td></tr>
+</table>
+
+<h2>Cuándo se activa preventa</h2>
+<table>
+<tr><th>Tipo de deal</th><th>¿Preventa?</th><th>Alcance</th></tr>
+<tr><td>Renovación estándar sin cambio de alcance</td><td>No</td><td>—</td></tr>
+<tr><td>Upsell de módulo/capacitación conocido</td><td>Opcional</td><td>Consulta puntual</td></tr>
+<tr><td>Deal nuevo con integración a sistemas del cliente</td><td><b>Sí, obligatorio</b></td><td>Demo + validación de arquitectura</td></tr>
+<tr><td>Deal Hermes / SPEI (regulatorio, misión crítica)</td><td><b>Sí, obligatorio</b></td><td>Demo + PoC + revisión de compliance (Banxico/CNBV)</td></tr>
+<tr><td>Deal de hardware criptográfico (HSM, payShield)</td><td><b>Sí, obligatorio</b></td><td>Propuesta técnica, alcance y <b>riesgo regulatorio</b> validados por el líder técnico del <a href="delivery.html#fabricantes">equipo de fabricante</a> (autoridad de cumplimiento)</td></tr>
+<tr><td>Deal &gt; $500K MXN de cualquier línea</td><td><b>Sí, obligatorio</b></td><td>A criterio del ingeniero, mínimo demo</td></tr>
+</table>
+
+<h2>Diagrama BPMN</h2>
+<div class="diagram" id="bp-cmp05"></div>
+<script type="application/bpmn+json" data-target="bp-cmp05">
+{"lanes":[
+ {"id":"cli","label":"Cliente (equipo técnico)","color":"yellow","interaction":true},
+ {"id":"ven","label":"Vendedor","color":"orange"},
+ {"id":"pv","label":"Preventa Técnica","color":"blue"},
+ {"id":"dl","label":"Delivery (Implementación)","color":"teal"}
+],"nodes":[
+ {"id":"s","lane":"ven","col":0,"type":"start","label":["Deal calificado que","requiere validación"]},
+ {"id":"t1","lane":"ven","col":1,"type":"task","label":["Levantar solicitud","DL.P01.E01 completa"]},
+ {"id":"g1","lane":"pv","col":2,"type":"gateway","label":["¿Completa?","(SLA 48 h)"]},
+ {"id":"t2","lane":"pv","col":3,"type":"task","label":["Discovery técnico:","stack, integraciones,","compliance"]},
+ {"id":"m1","lane":"cli","col":3,"type":"task","label":["Equipo técnico del","cliente participa"]},
+ {"id":"t3","lane":"pv","col":4,"type":"task","label":["Acordar criterios de","éxito POR ESCRITO"]},
+ {"id":"t4","lane":"pv","col":5,"type":"task","label":["Ejecutar demo ≤10 días","o PoC con plan cerrado"]},
+ {"id":"m2","lane":"cli","col":5,"type":"task","label":["Cliente evalúa contra","SUS criterios firmados"]},
+ {"id":"g2","lane":"pv","col":6,"type":"gateway","label":["¿Viable?"]},
+ {"id":"t5","lane":"dl","col":7,"type":"task","label":["Validar entregabilidad","y esfuerzo (H06)"]},
+ {"id":"t6","lane":"ven","col":7,"type":"task","label":["No viable: alternativas","o archivar deal"]},
+ {"id":"e1","lane":"ven","col":8,"type":"end","label":["Veredicto vinculante","→ propuesta (stage 4)"]}
+],"flows":[
+ {"f":"s","t":"t1"},
+ {"f":"t1","t":"g1"},
+ {"f":"g1","t":"t1","label":"Faltantes: se regresa","loop":true},
+ {"f":"g1","t":"t2","label":"Sí: fecha asignada"},
+ {"f":"t2","t":"m1","dashed":true,"label":"sesión técnica"},
+ {"f":"t2","t":"t3"},
+ {"f":"t3","t":"m2","dashed":true,"label":"criterios firmados"},
+ {"f":"t3","t":"t4"},
+ {"f":"t4","t":"m2","dashed":true,"label":"demo/PoC"},
+ {"f":"t4","t":"g2"},
+ {"f":"g2","t":"t5","label":"Sí / condicionado"},
+ {"f":"g2","t":"t6","label":"No"},
+ {"f":"t5","t":"e1"}
+],"caption":"DL.P01 — sin criterios de éxito firmados no hay PoC; sin veredicto de preventa no hay propuesta. Lo prometido y lo entregable son el mismo documento."}
+</script>
+
+<h2>Procedimiento paso a paso</h2>
+<table class="steps">
+<tr><th>Paso</th><th>Quién</th><th>Acción concreta</th><th>Herramienta / registro</th><th>Criterio de salida</th><th>Tiempo</th></tr>
+<tr><td>1</td><td>Vendedor</td><td>Levantar solicitud con: dolor técnico, stack del cliente, monto, fecha objetivo, decisor técnico identificado</td><td><a href="pl-cm.html#e09">DL.P01.E01</a></td><td>Todos los campos completos</td><td>Al calificar el deal</td></tr>
+<tr><td>2</td><td><a href="posiciones.html#pv">Preventa</a></td><td>Responder en ≤ 48 h: aceptar con fecha, pedir faltantes, o rechazar si no cumple los criterios de activación. Priorizar: 1) stage 3 con fecha, 2) monto, 3) orden de llegada</td><td>HubSpot Tasks</td><td>Respuesta registrada en el deal</td><td>≤ 48 h</td></tr>
+<tr><td>3</td><td>Preventa + cliente</td><td>Discovery técnico con el equipo del cliente: arquitectura, integraciones, compliance (PCI/FIPS/CNBV/Banxico), volúmenes. Agenda previa 24 h (<a href="pl-cx.html#c02">C02</a>)</td><td>Nota en el deal</td><td>Requisitos técnicos documentados en HubSpot</td><td>Días 1–3</td></tr>
+<tr><td>4</td><td>Preventa</td><td>Acordar POR ESCRITO los criterios de éxito con el cliente: "si vemos X, Y, Z → avanzamos a propuesta". Sin criterios firmados, no hay PoC</td><td>Sección criterios de <a href="pl-cm.html#e09">DL.P01.E01</a></td><td>Criterios confirmados por email por el cliente</td><td>Antes de la demo</td></tr>
+<tr><td>5</td><td>Preventa</td><td>Ejecutar demo estándar (guion del <a href="cm-p05.html">playbook</a>) en ≤ 10 días, o PoC con plan cerrado: alcance, duración máx 2–4 semanas, recursos del cliente comprometidos</td><td>Sandbox de la línea</td><td>Demo/PoC ejecutada contra los criterios</td><td>≤ 10 días / ≤ 4 semanas</td></tr>
+<tr><td>6</td><td>Preventa</td><td>Cerrar con reunión de resultados vs criterios (nunca con silencio) y emitir veredicto: Viable / Viable con condiciones / No viable con alternativas</td><td>Sección resultado de <a href="pl-cm.html#e09">DL.P01.E01</a></td><td>Veredicto registrado — es vinculante para la propuesta</td><td>≤ 5 días post-demo</td></tr>
+<tr><td>7</td><td>Preventa + <a href="dl-p03.html">Implementación</a></td><td>Validar entregabilidad: arquitectura propuesta, esfuerzo estimado, supuestos y exclusiones explícitos (handoff <a href="handoffs.html">H06</a>)</td><td>Insumos de propuesta</td><td>Implementación confirma capacidad y fechas</td><td>Antes de propuesta</td></tr>
+<tr><td>8</td><td>Vendedor</td><td>Construir la propuesta EXACTAMENTE sobre lo validado (no más) y presentarla en reunión (<a href="pl-cx.html#c04">C04</a>)</td><td><a href="cm-p03.html">CM.P03</a> stage 4</td><td>Propuesta presentada</td><td>Stage 3 → 4</td></tr>
+</table>
+
+<div class="touch"><b class="tag">Touchpoints con el cliente (experiencia homogénea)</b>
+El equipo técnico del cliente vive un proceso serio: sesiones con agenda (<a href="pl-cx.html#c02">C02</a>), criterios de éxito definidos por ELLOS antes de la demo, resultados presentados contra esos criterios y honestidad total si algo no es viable — con alternativas. Esa honestidad técnica es el activo de confianza más caro de Conecta. <span class="wip">WIP: máx 4 solicitudes activas y 2 PoCs simultáneas por ingeniero de preventa</span></div>
+
+<h2>Entregables</h2>
+<table>
+<tr><th>Código</th><th>Entregable</th><th>Plantilla</th></tr>
+<tr><td><code><a href="pl-cm.html#e09">DL.P01.E01</a></code></td><td>Solicitud de Preventa + Informe de Demo/PoC (mismo documento, dos secciones)</td><td><a class="tpl-link" href="pl-cm.html#e09">abrir</a></td></tr>
+</table>
+
+<h2>Handoffs</h2>
+<table>
+<tr><th>#</th><th>Entrega</th><th>Recibe</th><th>Qué</th><th>Cuándo</th><th>Criterio de calidad</th></tr>
+<tr><td>H05</td><td>Comercial</td><td>Preventa</td><td>Solicitud de preventa completa</td><td>Deal en stage 2–3</td><td>Todos los campos; decisor técnico identificado</td></tr>
+<tr><td>H05r</td><td>Preventa</td><td>Comercial</td><td>Veredicto + insumos de propuesta</td><td>≤ 5 días post demo/PoC</td><td>Viabilidad explícita; esfuerzo estimado; supuestos escritos</td></tr>
+<tr><td>H06</td><td>Preventa</td><td>Delivery (Implementación)</td><td>Arquitectura y estimación para validar entregabilidad</td><td>Antes de propuesta</td><td>Implementación confirma capacidad y fechas</td></tr>
+</table>
+
+<h2>Métricas</h2>
+<table>
+<tr><th>Métrica</th><th>Meta</th><th>Fuente</th></tr>
+<tr><td>Tiempo de respuesta a solicitud</td><td>≤ 48 h</td><td>HubSpot tasks</td></tr>
+<tr><td>Tiempo solicitud → demo ejecutada</td><td>≤ 10 días</td><td>HubSpot</td></tr>
+<tr><td>Tasa de conversión post-demo (stage 3 → 4)</td><td>&gt; 60%</td><td>HubSpot</td></tr>
+<tr><td>PoCs con criterios de éxito firmados</td><td>100%</td><td><a href="pl-cm.html#e09">DL.P01.E01</a></td></tr>
+<tr><td>Deals ganados sin sorpresa de scope en Delivery</td><td>&gt; 90%</td><td>Retro de kickoff (<a href="dl-p02.html">DL.P02</a>)</td></tr>
+</table>
+
+<div class="callout rule"><b class="tag">Regla de oro</b>La PoC no es una demo larga: es un experimento con hipótesis, criterios y fecha de fin. Todo lo demás es consultoría gratis.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Proceso DL.P01</footer>
+</main></div>
+<script src="bpmn.js"></script>
+<script src="nav.js"></script>
+</body></html>

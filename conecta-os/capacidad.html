@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Capacidad Operativa · Conecta OS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="logo.png" alt="Conecta" class="logoimg" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><svg style="display:none" width="148" height="26" viewBox="0 0 296 52" xmlns="http://www.w3.org/2000/svg" aria-label="Conecta"><path d="M46,26 C46,15 30,15 30,26 C30,37 14,37 14,26 C14,15 30,15 30,26 C30,37 46,37 46,26 Z" fill="none" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/><text x="62" y="41" font-family="Segoe UI,Arial,sans-serif" font-size="44" font-weight="800" letter-spacing="4" fill="#ffffff">NECTA</text></svg><span class="os">OS</span></a><span class="tag">Sistema Operativo de Procesos</span></header>
+<div class="layout"><nav id="sidebar"></nav><main>
+<div class="crumb"><a href="index.html">Inicio</a> › <a href="gobierno.html">Gobierno</a> › Capacidad Operativa</div>
+<h1><span class="pcode">GO · CAPACIDAD</span>Modelo de Capacidad Operativa (WIP máximo)</h1>
+<p class="lead">Cada rol tiene un <b>límite máximo de carga simultánea</b>. El límite no es burocracia: es la garantía de que cada cliente, prospecto y proyecto recibe la experiencia estándar completa. Un rol saturado degrada la experiencia de TODOS sus clientes, no solo del último que llegó.</p>
+
+<div class="callout rule"><b class="tag">Las 3 reglas del modelo</b>
+<b>1. El WIP es un tope duro:</b> al alcanzarlo, el trabajo nuevo se encola con prioridad o se reasigna — no se "aprieta". <b>2. Regla del 80%:</b> un rol operando ≥ 80% de su capacidad por 4 semanas seguidas dispara decisión de contratación o redistribución (la monitorea <a href="posiciones.html#hoo">Head of Operations</a> y se decide en el <a href="gobierno.html">Comité de Dirección</a>). <b>3. La calidad no se negocia por volumen:</b> si hay que elegir entre atender más y atender bien, el OS elige atender bien — y contratar.</div>
+
+<h2>Límites por rol</h2>
+<table>
+<tr><th>Rol</th><th>Unidad de carga</th><th>Máximo simultáneo</th><th>Racional</th><th>Al saturarse</th></tr>
+<tr><td><a href="posiciones.html#vts">Vendedor Nuevos Negocios</a></td><td>Deals abiertos · cuentas en secuencia · reuniones/sem</td><td><b>25 deals · 15 cuentas · 12 reuniones</b></td><td>Cada deal activo exige nota, task futura y next step real (<a href="cm-p03.html">CM.P03</a>); más de 25 = deals huérfanos</td><td>Archivar deals fríos con motivo antes de abrir nuevos; HoS re-prioriza el ICP</td></tr>
+<tr><td><a href="posiciones.html#vth">Vendedor Renovaciones</a></td><td>Contratos en libro · renovaciones en ventana T-90 activa</td><td><b>30 contratos · 8 renovaciones activas</b></td><td>Cada renovación exige revisión de cuenta completa (<a href="pl-cm.html#e10">CM.P04.E01</a>) y reunión de propuesta</td><td>Adelantar revisiones fuera de pico; apoyo de otro vendedor en cuentas simples</td></tr>
+<tr><td><a href="posiciones.html#ves">Vendedor Estratégico</a></td><td>Deals de alto ticket</td><td><b>8 deals</b></td><td>Deals &gt; $500K exigen mapa de poder, multi-reunión y visibilidad total en CRM</td><td>Transferir deals menores a otro vendedor con handoff documentado</td></tr>
+<tr><td><a href="posiciones.html#pv">Preventa Técnica</a></td><td>Solicitudes activas · PoCs simultáneas</td><td><b>4 solicitudes · 2 PoCs</b></td><td>Una PoC seria consume 30–50% de una semana; 3 PoCs = las 3 mal hechas (<a href="dl-p01.html">DL.P01</a>)</td><td>Cola por prioridad (stage 3 con fecha &gt; monto &gt; llegada); avisar fecha realista al vendedor</td></tr>
+<tr><td><a href="dl-p03.html">PM / Ingeniero de Implementación</a></td><td>Proyectos simultáneos</td><td><b>4 proyectos (máx 1 misión crítica)</b></td><td>Cada proyecto exige reporte semanal C07, gestión de cambios y presencia real con el cliente; Hermes/SPEI cuenta doble por criticidad regulatoria</td><td>HoD encola el proyecto nuevo (el cliente recibe fecha honesta de arranque) o contrata</td></tr>
+<tr><td><a href="posiciones.html#sop">Soporte L1</a></td><td>Tickets abiertos por agente</td><td><b>15 tickets</b></td><td>Más de 15 rompe los SLAs de primera respuesta (<a href="dl-p04.html">DL.P04</a>)</td><td>Redistribuir en el equipo; congelar S4 con aviso al cliente</td></tr>
+<tr><td>Soporte L2 (ingeniería)</td><td>Tickets escalados</td><td><b>8 tickets</b></td><td>El diagnóstico profundo no se hace en paralelo masivo</td><td>Priorizar por severidad; escalar antes a L3 fabricante</td></tr>
+<tr><td><a href="posiciones.html#cx">Customer Success (CSM)</a></td><td>Cuentas gestionadas</td><td><b>20 cuentas</b></td><td>Cada cuenta exige contacto proactivo trimestral y health score mensual real (<a href="pl-dl.html#e06">DL.P04.E01</a>)</td><td>Segmentar: cuentas top con CSM, resto con modelo digital hasta contratar</td></tr>
+<tr><td><a href="posiciones.html#hom">Marketing (por persona)</a></td><td>Piezas/mes · campañas activas</td><td><b>8 piezas · 3 campañas</b></td><td>Lección junio 2026: 22 piezas en 30 días no salen; must-ship primero (<a href="mk-p01.html">MK.P01</a>)</td><td>Recortar desde Hold; nunca sacrificar must-ship ni el gate de evidencia</td></tr>
+<tr><td><a href="posiciones.html#hos">Head of Sales</a></td><td>Vendedores dirigidos · deals en coaching directo</td><td><b>6 vendedores · 8 deals</b></td><td>El review semanal y el coaching real no escalan más allá</td><td>Nombrar líder de línea o segundo head</td></tr>
+<tr><td><a href="posiciones.html#hod">Head of Delivery</a></td><td>Proyectos supervisados en paralelo</td><td><b>6 proyectos + áreas</b></td><td>Supervisión de calidad + kickoffs + escalaciones S1</td><td>Delegar kickoffs estándar al PM senior</td></tr>
+<tr><td><a href="posiciones.html#ceo">CEO</a></td><td>Prioridades trimestrales · deals patrocinados</td><td><b>3 prioridades · 5 deals</b></td><td>El CEO interino en 3 roles es el mayor riesgo de la Fase 1 del <a href="plan.html">plan</a></td><td>Contratar los heads pendientes — es el mecanismo de descarga diseñado</td></tr>
+</table>
+
+<h2>Cómo se monitorea</h2>
+<table>
+<tr><th>Qué</th><th>Cómo</th><th>Quién</th><th>Frecuencia</th></tr>
+<tr><td>Deals/cuentas por vendedor</td><td>Dashboard comercial HubSpot (conteo por owner)</td><td><a href="posiciones.html#hos">Head of Sales</a></td><td>En cada <a href="cm-p03.html">pipeline review</a></td></tr>
+<tr><td>Solicitudes/PoCs de preventa</td><td>Tasks abiertas por ingeniero</td><td>Head of Sales</td><td>Semanal</td></tr>
+<tr><td>Proyectos por PM</td><td>Proyectos activos por owner</td><td><a href="posiciones.html#hod">Head of Delivery</a></td><td>Revisión semanal de Delivery</td></tr>
+<tr><td>Tickets por agente</td><td>Service Hub (open tickets por owner)</td><td>Head of Delivery</td><td>Diario (automático)</td></tr>
+<tr><td>Regla del 80% (todas las áreas)</td><td>Semáforo de capacidad: 🟢 &lt;60% · 🟡 60–80% · 🔴 &gt;80% sostenido</td><td><a href="posiciones.html#hoo">Head of Operations</a></td><td>Mensual al <a href="gobierno.html">Comité</a></td></tr>
+</table>
+
+<div class="callout"><b class="tag">Relación con contrataciones</b>El semáforo de capacidad es el input objetivo del plan de contrataciones (<a href="op-p01.html">OP.P01</a> + <a href="plan.html">Plan de Implementación</a>): se contrata cuando los datos muestran saturación sostenida, no cuando alguien "se siente" saturado — y ANTES de que la experiencia del cliente se degrade.</div>
+
+<footer class="site">Conecta OS v3.0 · Julio 2026 · Gobierno</footer>
+</main></div>
+<script src="nav.js"></script>
+</body></html>
